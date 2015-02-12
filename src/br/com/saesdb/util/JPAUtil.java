@@ -1,5 +1,3 @@
-
-
 package br.com.saesdb.util;
 
 import javax.persistence.EntityManager;
@@ -9,7 +7,7 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
     
-   
+   /* MeTA-INF/persistence.xml  persistence-unit name="SaesDBasePU" */
    protected final static EntityManagerFactory emf = Persistence.createEntityManagerFactory("SaesDBasePU");
 
     public static  final EntityManager getEm() {

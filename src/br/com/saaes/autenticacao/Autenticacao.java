@@ -1,28 +1,30 @@
 package br.com.saaes.autenticacao;
 
 import br.com.saaes.modelo.T900Usuario;
+import br.com.saesdb.dao.DAO;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javax.persistence.EntityManager;
 
 /**
  *
- * @author F4679646
+ * @author
  */
 public class Autenticacao {
-    
-    public T900Usuario validaT900Usuario(String nomeUsuario, String senha){
-//        this.senhaUsuario = criptografa(senhaUsuario, "MD5");
-//        this.senhaUsuario = criptografa(this.senhaUsuario, "SHA");
-        
-        T900Usuario t900Usuario = null;
-        if ( nomeUsuario.equals("jean") && senha.equals("1234") ){
-            t900Usuario = new T900Usuario();
-            t900Usuario.setNome("Jean Fernandes");
+
+    public T900Usuario validaT900Usuario(String nomeUsuario, String senha, EntityManager em) throws NoSuchAlgorithmException {
+        String alg = "MD5";//"SHA"
+        T900Usuario t900Usuario = (T900Usuario) DAO.getSingleResultFromFromNamedQuery(T900Usuario.BUSCA_USUARIO, T900Usuario.class, em, nomeUsuario);
+
+        if (t900Usuario.getSenha().equals(criptografa(senha, alg))) {
+            return t900Usuario;
+        } else {
+            return null;
         }
-        return t900Usuario;
     }
-        public String criptografa(String plaintext, String algorithm) throws NoSuchAlgorithmException {
+
+    public static String criptografa(String plaintext, String algorithm) throws NoSuchAlgorithmException {
         MessageDigest m = MessageDigest.getInstance(algorithm);
         m.reset();
         m.update(plaintext.getBytes());

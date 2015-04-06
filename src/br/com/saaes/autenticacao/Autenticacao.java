@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 
 /**
  *
- * @author
+ * @author F4679646
  */
 public class Autenticacao {
 

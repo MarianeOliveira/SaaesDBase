@@ -10,6 +10,9 @@ import javax.persistence.criteria.Order;
 
 /**
  *
+ * @author Joelson
+ * @author Cariello F1765038
+ * @since 2014-07-14
  */
 public class DAO implements Serializable{
     private static final long serialVersionUID = 1L;

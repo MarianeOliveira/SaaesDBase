@@ -2,14 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Testando Novo"/>
         <group name="Meus">
-            <file>file:/C:/_desenv/Pessoal/Novo%20Saaes/SaaesDBase/src/br/com/saaes/autenticacao/Autenticacao.java</file>
+            <file>file:/C:/_desenv/Pessoal/SaaesDBase/src/br/com/saaes/autenticacao/Autenticacao.java</file>
+            <file>file:/C:/_desenv/Pessoal/SaaesDBase/src/br/com/saesdb/dao/DAO.java</file>
+            <file>file:/C:/_desenv/Pessoal/SaaesDBase/src/br/com/saaes/modelo/T900Usuario.java</file>
         </group>
         <group>
             <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T900Usuario.java</file>
-            <file>file:/E:/_desenv/SaaesDBase/src/META-INF/persistence.xml</file>
-            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T902Cursos.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T300ies.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T901conceitos.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saesdb/util/JPAUtil.java</file>
         </group>
     </open-files>
 </project-private>

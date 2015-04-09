@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 /**
@@ -24,9 +24,19 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "t300ies")
 @NamedQueries({
-    @NamedQuery(name = "T300ies.findAll", query = "SELECT t FROM T300ies t")})
+    @NamedQuery(name = T300ies.FIND_ALL, query = "SELECT t FROM T300ies t ")})
+
 public class T300ies implements Serializable {
+    @Column(name = "usuario_cadastro")
+    private Integer usuarioCadastro;
+    @Column(name = "dt_cadastro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtCadastro;
+    @OneToMany(mappedBy = "idIes")
+    private Collection<T400cursos> t400cursosCollection;
     private static final long serialVersionUID = 1L;
+    public static final String FIND_ALL = "T300ies.findAll";
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -93,6 +103,30 @@ public class T300ies implements Serializable {
     @Override
     public String toString() {
         return "br.com.saaes.modelo.T300ies[ id=" + id + " ]";
+    }
+
+    public Integer getUsuarioCadastro() {
+        return usuarioCadastro;
+    }
+
+    public void setUsuarioCadastro(Integer usuarioCadastro) {
+        this.usuarioCadastro = usuarioCadastro;
+    }
+
+    public Date getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
+    }
+
+    public Collection<T400cursos> getT400cursosCollection() {
+        return t400cursosCollection;
+    }
+
+    public void setT400cursosCollection(Collection<T400cursos> t400cursosCollection) {
+        this.t400cursosCollection = t400cursosCollection;
     }
     
 }

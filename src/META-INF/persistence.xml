@@ -3,9 +3,11 @@
   <persistence-unit name="SaesDBasePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.com.saaes.modelo.T900Usuario</class>
-    <class>br.com.saaes.modelo.T300ies</class>
     <class>br.com.saaes.modelo.T901conceitos</class>
-
+    <class>br.com.saaes.modelo.T300ies</class>
+    <class>br.com.saaes.modelo.T400cursos</class>
+    <class>br.com.saaes.modelo.T200docente</class>
+    <class>br.com.saaes.modelo.T201coordenador</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saaes?zeroDateTimeBehavior=convertToNull"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

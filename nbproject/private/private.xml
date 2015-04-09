@@ -10,8 +10,7 @@
         <group>
             <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T900Usuario.java</file>
             <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T300ies.java</file>
-            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T901conceitos.java</file>
-            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saesdb/util/JPAUtil.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/META-INF/atualizacoesDB.sql</file>
         </group>
     </open-files>
 </project-private>

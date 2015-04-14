@@ -8,9 +8,13 @@
             <file>file:/C:/_desenv/Pessoal/SaaesDBase/src/br/com/saaes/modelo/T900Usuario.java</file>
         </group>
         <group>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T600biografia.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T500coordenador.java</file>
             <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T900Usuario.java</file>
-            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T300ies.java</file>
-            <file>file:/E:/_desenv/SaaesDBase/src/META-INF/atualizacoesDB.sql</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T400docente.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T700avaliacao.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T300cursos.java</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/br/com/saaes/modelo/T200ies.java</file>
         </group>
     </open-files>
 </project-private>

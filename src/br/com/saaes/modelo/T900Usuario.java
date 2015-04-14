@@ -1,9 +1,11 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,30 +23,41 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author f4679646
+ * @author 
  */
 @Entity
 @Table(name = "t900_usuario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "T900Usuario.findAll", query = "SELECT t FROM T900Usuario t"),
-    @NamedQuery(name = "T900Usuario.findById", query = "SELECT t FROM T900Usuario t WHERE t.id = ?1"),
-    @NamedQuery(name = T900Usuario.BUSCA_USUARIO, query = "SELECT t FROM T900Usuario t WHERE t.usuario = ?1"),
-    @NamedQuery(name = "T900Usuario.findBySenha", query = "SELECT t FROM T900Usuario t WHERE t.senha = ?1")})
+    @NamedQuery(name = T900Usuario.BUSCA_TODOS, query = "SELECT t FROM T900Usuario t"),
+    @NamedQuery(name = T900Usuario.BUSCA_USUARIO, query = "SELECT t FROM T900Usuario t WHERE t.usuario = ?1")})
 
 public class T900Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+    public static final String BUSCA_TODOS = "T900Usuario.findAll";
     public static final String BUSCA_USUARIO = "T900Usuario.findByUsuario";
+    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
+    @Size(max = 255)
+    @Column(name = "cd_usu_reg")
+    private String cdUsuReg;
+    @Size(max = 255)
+    @Column(name = "cpf_cnpj")
+    private String cpfCnpj;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "telefone")
+    private BigDecimal telefone;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "usuario")
+    
     private String usuario;
     @Size(max = 255)
     @Column(name = "senha")
@@ -57,8 +71,6 @@ public class T900Usuario implements Serializable {
     @Size(max = 255)
     @Column(name = "nome")
     private String nome;
-    @Column(name = "telefone")
-    private BigInteger telefone;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 255)
     @Column(name = "email")
@@ -126,13 +138,6 @@ public class T900Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public BigInteger getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(BigInteger telefone) {
-        this.telefone = telefone;
-    }
 
     public String getEmail() {
         return email;
@@ -174,5 +179,30 @@ public class T900Usuario implements Serializable {
     public String toString() {
         return "br.com.saaes.modelo.T900Usuario[ id=" + id + " ]";
     }
-    
+
+    public String getCdUsuReg() {
+        return cdUsuReg;
+    }
+
+    public void setCdUsuReg(String cdUsuReg) {
+        this.cdUsuReg = cdUsuReg;
+    }
+
+    public String getCpfCnpj() {
+        return cpfCnpj;
+    }
+
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
+    }
+
+    public BigDecimal getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(BigDecimal telefone) {
+        this.telefone = telefone;
+    }
+
+     
 }

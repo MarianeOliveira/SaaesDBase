@@ -1,4 +1,4 @@
-package br.com.saesdb.dao;
+package br.com.saaes.dao;
 
 import java.io.Serializable;
 import java.util.List;

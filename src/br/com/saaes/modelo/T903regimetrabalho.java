@@ -9,65 +9,53 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author f4679646
+ * @author F4679646
  */
 @Entity
-@Table(name = "t300ies")
+@Table(name = "t903regimetrabalho")
 @NamedQueries({
-    @NamedQuery(name = "T300ies.findAll", query = "SELECT t FROM T300ies t")})
-public class T300ies implements Serializable {
+    @NamedQuery(name = "T903regimetrabalho.findAll", query = "SELECT t FROM T903regimetrabalho t")})
+public class T903regimetrabalho implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
-    private Long id;
-    @Size(max = 200)
-    @Column(name = "nome")
-    private String nome;
-    @Size(max = 200)
-    @Column(name = "campus")
-    private String campus;
+    private Integer id;
+    @Size(max = 50)
+    @Column(name = "descricao")
+    private String descricao;
 
-    public T300ies() {
+    public T903regimetrabalho() {
     }
 
-    public T300ies(Long id) {
+    public T903regimetrabalho(Integer id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCampus() {
-        return campus;
-    }
-
-    public void setCampus(String campus) {
-        this.campus = campus;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
@@ -80,10 +68,10 @@ public class T300ies implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof T300ies)) {
+        if (!(object instanceof T903regimetrabalho)) {
             return false;
         }
-        T300ies other = (T300ies) object;
+        T903regimetrabalho other = (T903regimetrabalho) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -92,7 +80,7 @@ public class T300ies implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.saaes.modelo.T300ies[ id=" + id + " ]";
+        return "br.com.saaes.modelo.T903regimetrabalho[ id=" + id + " ]";
     }
     
 }

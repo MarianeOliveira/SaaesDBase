@@ -1,4 +1,4 @@
-package br.com.saesdb.util;
+package br.com.saaes.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

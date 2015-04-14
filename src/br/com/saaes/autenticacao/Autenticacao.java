@@ -1,7 +1,7 @@
 package br.com.saaes.autenticacao;
 
 import br.com.saaes.modelo.T900Usuario;
-import br.com.saesdb.dao.DAO;
+import br.com.saaes.dao.DAO;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

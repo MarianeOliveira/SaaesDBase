@@ -2,10 +2,17 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="SaesDBasePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.com.saaes.modelo.T200ies</class>
+    <class>br.com.saaes.modelo.T300cursos</class>
+    <class>br.com.saaes.modelo.T400docente</class>
+    <class>br.com.saaes.modelo.T500coordenador</class>
+    <class>br.com.saaes.modelo.T600biografia</class>
+    <class>br.com.saaes.modelo.T700avaliacao</class>
     <class>br.com.saaes.modelo.T900Usuario</class>
-    <class>br.com.saaes.modelo.T300ies</class>
     <class>br.com.saaes.modelo.T901conceitos</class>
-
+    <class>br.com.saaes.modelo.T902titulacao</class>
+    <class>br.com.saaes.modelo.T903regimetrabalho</class>
+    <class>br.com.saaes.modelo.T904vinculoempregaticio</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saaes?zeroDateTimeBehavior=convertToNull"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

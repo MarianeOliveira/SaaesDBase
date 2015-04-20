@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
@@ -21,16 +15,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author tefi
+ * @author f4679646
  */
 @Entity
-@Table(name = "t600biografia")
+@Table(name = "t600bibliografia")
 @NamedQueries({
-    @NamedQuery(name = "T600biografia.findAll", query = "SELECT t FROM T600biografia t")})
-public class T600biografia implements Serializable {
+    @NamedQuery(name = "T600bibliografia.findAll", query = "SELECT t FROM T600bibliografia t")})
+public class T600bibliografia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,21 +44,28 @@ public class T600biografia implements Serializable {
     private Integer qntCompleta;
     @Column(name = "periodico")
     private Integer periodico;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "dt_cadastro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
+    @JoinColumn(name = "id_t900_usuario", referencedColumnName = "id")
+    @ManyToOne
+    private T900Usuario T900Usuario;
     @JoinColumn(name = "id_curso", referencedColumnName = "id")
     @ManyToOne
     private T300cursos t300cursos;
-    @JoinColumn(name = "id_t900_usuario", referencedColumnName = "id")
-    @ManyToOne
-    private T900Usuario t900Usuario;
 
-    public T600biografia() {
+    public T600bibliografia() {
     }
 
-    public T600biografia(Long id) {
+    public T600bibliografia(Long id) {
         this.id = id;
+    }
+
+    public T600bibliografia(Long id, Date dtCadastro) {
+        this.id = id;
+        this.dtCadastro = dtCadastro;
     }
 
     public Long getId() {
@@ -130,20 +132,20 @@ public class T600biografia implements Serializable {
         this.dtCadastro = dtCadastro;
     }
 
+    public T900Usuario getT900Usuario() {
+        return T900Usuario;
+    }
+
+    public void setT900Usuario(T900Usuario T900Usuario) {
+        this.T900Usuario = T900Usuario;
+    }
+
     public T300cursos getT300cursos() {
         return t300cursos;
     }
 
     public void setT300cursos(T300cursos t300cursos) {
         this.t300cursos = t300cursos;
-    }
-
-    public T900Usuario getT900Usuario() {
-        return t900Usuario;
-    }
-
-    public void setT900Usuario(T900Usuario t900Usuario) {
-        this.t900Usuario = t900Usuario;
     }
 
     @Override
@@ -156,10 +158,10 @@ public class T600biografia implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof T600biografia)) {
+        if (!(object instanceof T600bibliografia)) {
             return false;
         }
-        T600biografia other = (T600biografia) object;
+        T600bibliografia other = (T600bibliografia) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -168,7 +170,7 @@ public class T600biografia implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.saaes.modelo.T600biografia[ id=" + id + " ]";
+        return "br.com.saaes.modelo.T600bibliografia[ id=" + id + " ]";
     }
     
 }

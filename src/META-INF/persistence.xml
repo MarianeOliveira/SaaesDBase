@@ -6,13 +6,13 @@
     <class>br.com.saaes.modelo.T300cursos</class>
     <class>br.com.saaes.modelo.T400docente</class>
     <class>br.com.saaes.modelo.T500coordenador</class>
-    <class>br.com.saaes.modelo.T600biografia</class>
     <class>br.com.saaes.modelo.T700avaliacao</class>
     <class>br.com.saaes.modelo.T900Usuario</class>
     <class>br.com.saaes.modelo.T901conceitos</class>
     <class>br.com.saaes.modelo.T902titulacao</class>
     <class>br.com.saaes.modelo.T903regimetrabalho</class>
     <class>br.com.saaes.modelo.T904vinculoempregaticio</class>
+    <class>br.com.saaes.modelo.T600bibliografia</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saaes?zeroDateTimeBehavior=convertToNull"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

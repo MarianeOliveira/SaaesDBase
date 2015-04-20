@@ -33,6 +33,7 @@ import javax.validation.constraints.Size;
 
 })
 public class T300cursos implements Serializable {
+    @OneToMany(mappedBy = "idCurso")
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T300cursos.findAll";
     public static final String FIND_USUARIO = "T300cursos.findUsuario";
@@ -45,13 +46,19 @@ public class T300cursos implements Serializable {
     private Long id;
     @Size(max = 100)
     @Column(name = "nome")
-    private String nome;
+    private String nome = "";
     @Column(name = "carga_horaria")
     private BigInteger cargaHoraria;
     @Column(name = "duracao_curso")
     private BigInteger duracaoCurso;
     @Column(name = "num_alunos")
     private Integer numAlunos;
+    @Column(name = "tipo_ato")
+    private Integer tipoAto;
+    @Column(name = "modalidade")
+    private Integer modalidade;
+    @Column(name = "tipo_curso")
+    private Integer tipoCurso;
     @Column(name = "num_disciplinas")
     private Integer numDisciplinas;
     @Column(name = "num_egressos")
@@ -208,5 +215,30 @@ public class T300cursos implements Serializable {
     public String toString() {
         return "br.com.saaes.modelo.T300cursos[ id=" + id + " ]";
     }
+
+    public Integer getTipoAto() {
+        return tipoAto;
+    }
+
+    public void setTipoAto(Integer tipoAto) {
+        this.tipoAto = tipoAto;
+    }
+
+    public Integer getModalidade() {
+        return modalidade;
+    }
+
+    public void setModalidade(Integer modalidade) {
+        this.modalidade = modalidade;
+    }
+
+    public Integer getTipoCurso() {
+        return tipoCurso;
+    }
+
+    public void setTipoCurso(Integer tipoCurso) {
+        this.tipoCurso = tipoCurso;
+    }
+
     
 }

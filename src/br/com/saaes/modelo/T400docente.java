@@ -33,7 +33,7 @@ public class T400docente implements Serializable {
     protected T400docentePK t400docentePK;
     @Size(max = 100)
     @Column(name = "nome")
-    private String nome;
+    private String nome = "";
     @Column(name = "expr_coord_cur_dist")
     private Integer exprCoordCurDist;
     @Column(name = "expr_prof_magist_coord")

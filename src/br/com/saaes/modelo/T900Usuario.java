@@ -2,6 +2,7 @@ package br.com.saaes.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,6 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = T900Usuario.BUSCA_USUARIO, query = "SELECT t FROM T900Usuario t WHERE t.usuario = ?1")})
 
 public class T900Usuario implements Serializable {
+    @Column(name = "telefone")
+    private BigInteger telefone;
+
     private static final long serialVersionUID = 1L;
     public static final String BUSCA_TODOS = "T900Usuario.findAll";
     public static final String BUSCA_USUARIO = "T900Usuario.findByUsuario";
@@ -49,9 +53,6 @@ public class T900Usuario implements Serializable {
     @Size(max = 255)
     @Column(name = "cpf_cnpj")
     private String cpfCnpj;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "telefone")
-    private BigDecimal telefone;
 
     @Basic(optional = false)
     @NotNull
@@ -196,13 +197,13 @@ public class T900Usuario implements Serializable {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public BigDecimal getTelefone() {
+    public BigInteger getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(BigDecimal telefone) {
+    public void setTelefone(BigInteger telefone) {
         this.telefone = telefone;
     }
 
-     
+    
 }

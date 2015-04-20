@@ -32,7 +32,7 @@ public class T500coordenador implements Serializable {
     protected T500coordenadorPK t500coordenadorPK;
     @Size(max = 100)
     @Column(name = "nome")
-    private String nome;
+    private String nome = "";
     @Size(max = 100)
     @Column(name = "atuacao_coord")
     private String atuacaoCoord;

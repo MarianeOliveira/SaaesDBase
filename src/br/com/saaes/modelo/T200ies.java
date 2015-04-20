@@ -29,6 +29,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = T200ies.FIND_ALL, query = "SELECT t FROM T200ies t ")})
 
 public class T200ies implements Serializable {
+    @OneToMany(mappedBy = "idIes")
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T200ies.findAll";
     @Id
@@ -38,10 +39,10 @@ public class T200ies implements Serializable {
     private Long id;
     @Size(max = 200)
     @Column(name = "nome")
-    private String nome;
+    private String nome = "";
     @Size(max = 200)
     @Column(name = "campus")
-    private String campus;
+    private String campus = "";
     @Column(name = "dt_cadastro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
@@ -120,5 +121,6 @@ public class T200ies implements Serializable {
     public String toString() {
         return "br.com.saaes.modelo.T200ies[ id=" + id + " ]";
     }
+
     
 }

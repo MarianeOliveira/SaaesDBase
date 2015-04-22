@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,24 +39,13 @@ public class T400docente implements Serializable {
     private Integer exprCoordCurDist;
     @Column(name = "expr_prof_magist_coord")
     private Integer exprProfMagistCoord;
-    @Column(name = "regime_trab_coord")
-    private Integer regimeTrabCoord;
-    @Column(name = "carga_horaria")
-    private Integer cargaHoraria;
-    @Column(name = "tit_corpo_docente")
-    private Integer titCorpoDocente;
     @Column(name = "perc_doutores")
     private Integer percDoutores;
-    @Column(name = "regime_trab_docente")
-    private Integer regimeTrabDocente;
-    @Column(name = "vinculo_trabalho")
-    private Integer vinculoTrabalho;
-    @Column(name = "dt_admissao")
     @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "dt_admissao")
     private Date dtAdmissao;
-    
     @Column(name = "exp_prof_corp_docente")
-    private Integer expProfCorpDocente;
+    private String expProfCorpDocente;
     @Column(name = "exp_exerc_docencia_educ")
     private Integer expExercDocenciaEduc;
     @Column(name = "exp_magist_super_corp_docente")
@@ -78,6 +68,21 @@ public class T400docente implements Serializable {
     @JoinColumn(name = "id_t900_usuario", referencedColumnName = "id")
     @ManyToOne
     private T900Usuario t900Usuario;
+    @JoinColumn(name = "regime_trab_coord", referencedColumnName = "id")
+    @OneToOne
+    private T903regimetrabalho regimeTrabCoord;
+    @Column(name = "carga_horaria")
+    private Integer cargaHoraria;
+    @JoinColumn(name = "tit_corpo_docente", referencedColumnName = "id")
+    @OneToOne
+    private T902titulacao titCorpoDocente;
+    @JoinColumn(name = "regime_trab_docente", referencedColumnName = "id")
+    @OneToOne
+    private T903regimetrabalho regimeTrabDocente;
+    @JoinColumn(name = "vinculo_trabalho", referencedColumnName = "id")
+    @OneToOne
+    private T904vinculoempregaticio vinculoTrabalho;
+    
     @JoinColumn(name = "id_curso", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private T300cursos t300cursos;
@@ -125,11 +130,11 @@ public class T400docente implements Serializable {
         this.exprProfMagistCoord = exprProfMagistCoord;
     }
 
-    public Integer getRegimeTrabCoord() {
+    public T903regimetrabalho getRegimeTrabCoord() {
         return regimeTrabCoord;
     }
 
-    public void setRegimeTrabCoord(Integer regimeTrabCoord) {
+    public void setRegimeTrabCoord(T903regimetrabalho regimeTrabCoord) {
         this.regimeTrabCoord = regimeTrabCoord;
     }
 
@@ -141,11 +146,11 @@ public class T400docente implements Serializable {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public Integer getTitCorpoDocente() {
+    public T902titulacao getTitCorpoDocente() {
         return titCorpoDocente;
     }
 
-    public void setTitCorpoDocente(Integer titCorpoDocente) {
+    public void setTitCorpoDocente(T902titulacao titCorpoDocente) {
         this.titCorpoDocente = titCorpoDocente;
     }
 
@@ -157,19 +162,19 @@ public class T400docente implements Serializable {
         this.percDoutores = percDoutores;
     }
 
-    public Integer getRegimeTrabDocente() {
+    public T903regimetrabalho getRegimeTrabDocente() {
         return regimeTrabDocente;
     }
 
-    public void setRegimeTrabDocente(Integer regimeTrabDocente) {
+    public void setRegimeTrabDocente(T903regimetrabalho regimeTrabDocente) {
         this.regimeTrabDocente = regimeTrabDocente;
     }
 
-    public Integer getExpProfCorpDocente() {
+    public String getExpProfCorpDocente() {
         return expProfCorpDocente;
     }
 
-    public void setExpProfCorpDocente(Integer expProfCorpDocente) {
+    public void setExpProfCorpDocente(String expProfCorpDocente) {
         this.expProfCorpDocente = expProfCorpDocente;
     }
 
@@ -286,11 +291,11 @@ public class T400docente implements Serializable {
         return "br.com.saaes.modelo.T400docente[ t400docentePK=" + t400docentePK + " ]";
     }
 
-    public Integer getVinculoTrabalho() {
+    public T904vinculoempregaticio getVinculoTrabalho() {
         return vinculoTrabalho;
     }
 
-    public void setVinculoTrabalho(Integer vinculoTrabalho) {
+    public void setVinculoTrabalho(T904vinculoempregaticio vinculoTrabalho) {
         this.vinculoTrabalho = vinculoTrabalho;
     }
 

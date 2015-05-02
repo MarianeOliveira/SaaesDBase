@@ -10,8 +10,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class T200ies_ {
 
 	public static volatile SingularAttribute<T200ies, Long> id;
-	public static volatile SingularAttribute<T200ies, T900Usuario> t900Usuario;
 	public static volatile SingularAttribute<T200ies, Date> dtCadastro;
+	public static volatile SingularAttribute<T200ies, T900Usuario> t900UsuarioId;
 	public static volatile SingularAttribute<T200ies, String> nome;
 	public static volatile SingularAttribute<T200ies, String> campus;
 

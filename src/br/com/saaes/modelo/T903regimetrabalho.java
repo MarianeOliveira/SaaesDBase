@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
@@ -18,14 +13,15 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author F4679646
+ * @author tefi
  */
 @Entity
 @Table(name = "t903regimetrabalho")
 @NamedQueries({
-    @NamedQuery(name = "T903regimetrabalho.findAll", query = "SELECT t FROM T903regimetrabalho t")})
+    @NamedQuery(name = T903regimetrabalho.FIND_ALL, query = "SELECT t FROM T903regimetrabalho t")})
 public class T903regimetrabalho implements Serializable {
     private static final long serialVersionUID = 1L;
+    public static final String FIND_ALL = "T903regimetrabalho.findAll";
     @Id
     @Basic(optional = false)
     @NotNull

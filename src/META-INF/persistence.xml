@@ -6,24 +6,27 @@
     <class>br.com.saaes.modelo.T300cursos</class>
     <class>br.com.saaes.modelo.T400docente</class>
     <class>br.com.saaes.modelo.T500coordenador</class>
+    <class>br.com.saaes.modelo.T600bibliografia</class>
     <class>br.com.saaes.modelo.T700avaliacao</class>
     <class>br.com.saaes.modelo.T900Usuario</class>
     <class>br.com.saaes.modelo.T901conceitos</class>
     <class>br.com.saaes.modelo.T902titulacao</class>
     <class>br.com.saaes.modelo.T903regimetrabalho</class>
     <class>br.com.saaes.modelo.T904vinculoempregaticio</class>
-    <class>br.com.saaes.modelo.T600bibliografia</class>
+    <class>br.com.saaes.modelo.T905modalidade</class>
+    <class>br.com.saaes.modelo.T906tipoato</class>
+    <class>br.com.saaes.modelo.T907tipocurso</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saaes?zeroDateTimeBehavior=convertToNull"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-      <property name="javax.persistence.jdbc.password" value=""/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
       <!--<property name="hibernate.hbm2ddl.auto" value="validate"/>-->
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.use_sql_comments" value="true"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saaes?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>
   </persistence-unit>
 </persistence>

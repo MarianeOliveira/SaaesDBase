@@ -1,11 +1,16 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -14,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,23 +27,29 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "t500coordenador")
+@XmlRootElement
 @NamedQueries({
     
-@NamedQuery(name = T500coordenador.FIN_ALL, query = "SELECT t FROM T500coordenador t")})
+@NamedQuery(name = T500coordenador.FIND_ALL, query = "SELECT t FROM T500coordenador t")})
 public class T500coordenador implements Serializable {
-
     private static final long serialVersionUID = 1L;
-    public static final String FIN_ALL = "T500coordenador.findAll";
-    @EmbeddedId
-    protected T500coordenadorPK t500coordenadorPK;
-    @Size(max = 100)
-    @Column(name = "nome")
-    private String nome = "";
+    public static final String FIND_ALL = "T500coordenador.findAll";
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
+    
     @Size(max = 100)
     @Column(name = "atuacao_coord")
     private String atuacaoCoord;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "carga_horaria")
-    private BigInteger cargaHoraria;
+    private BigDecimal cargaHoraria;
+    @Column(name = "dt_cadastro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtCadastro;
     @Column(name = "ens_dist")
     private Integer ensDist;
     @Column(name = "ens_super")
@@ -46,45 +58,24 @@ public class T500coordenador implements Serializable {
     private Integer ensTec;
     @Column(name = "gest_academica")
     private Integer gestAcademica;
-    @Column(name = "regime_trab")
-    private Integer regimeTrab;
-    @Column(name = "titulacao")
-    private Integer titulacao;
-    @Column(name = "dt_cadastro")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtCadastro;
-    @JoinColumn(name = "id_curso", referencedColumnName = "id", insertable = false, updatable = false)
+    @Size(max = 100)
+    @Column(name = "nome")
+    private String nome;
+    @JoinColumn(name = "t300_curso_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private T300cursos t300cursos;
-    @JoinColumn(name = "id_t900_usuario", referencedColumnName = "id")
+    private T300cursos t300CursoId;
+    
+    @JoinColumn(name = "t902_titulacao_id", referencedColumnName = "id")
     @ManyToOne
-    private T900Usuario t900Usuario;
+    private T902titulacao t902TitulacaoId;
+    @JoinColumn(name = "t903_regime_trab_id", referencedColumnName = "id")
+    @ManyToOne
+    private T903regimetrabalho t903RegimeTrabId;
+    @JoinColumn(name = "t900_usuario_id", referencedColumnName = "id")
+    @ManyToOne
+    private T900Usuario t900UsuarioId;
 
     public T500coordenador() {
-    }
-
-    public T500coordenador(T500coordenadorPK t500coordenadorPK) {
-        this.t500coordenadorPK = t500coordenadorPK;
-    }
-
-    public T500coordenador(long id, long idCurso) {
-        this.t500coordenadorPK = new T500coordenadorPK(id, idCurso);
-    }
-
-    public T500coordenadorPK getT500coordenadorPK() {
-        return t500coordenadorPK;
-    }
-
-    public void setT500coordenadorPK(T500coordenadorPK t500coordenadorPK) {
-        this.t500coordenadorPK = t500coordenadorPK;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getAtuacaoCoord() {
@@ -95,12 +86,20 @@ public class T500coordenador implements Serializable {
         this.atuacaoCoord = atuacaoCoord;
     }
 
-    public BigInteger getCargaHoraria() {
+    public BigDecimal getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public void setCargaHoraria(BigInteger cargaHoraria) {
+    public void setCargaHoraria(BigDecimal cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
+    }
+
+    public Date getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
     }
 
     public Integer getEnsDist() {
@@ -135,61 +134,71 @@ public class T500coordenador implements Serializable {
         this.gestAcademica = gestAcademica;
     }
 
-    public Integer getRegimeTrab() {
-        return regimeTrab;
+    public String getNome() {
+        return nome;
     }
 
-    public void setRegimeTrab(Integer regimeTrab) {
-        this.regimeTrab = regimeTrab;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Integer getTitulacao() {
-        return titulacao;
+    public T902titulacao getT902TitulacaoId() {
+        return t902TitulacaoId;
     }
 
-    public void setTitulacao(Integer titulacao) {
-        this.titulacao = titulacao;
+    public void setT902TitulacaoId(T902titulacao t902TitulacaoId) {
+        this.t902TitulacaoId = t902TitulacaoId;
     }
 
-    public Date getDtCadastro() {
-        return dtCadastro;
+    public T903regimetrabalho getT903RegimeTrabId() {
+        return t903RegimeTrabId;
     }
 
-    public void setDtCadastro(Date dtCadastro) {
-        this.dtCadastro = dtCadastro;
+    public void setT903RegimeTrabId(T903regimetrabalho t903RegimeTrabId) {
+        this.t903RegimeTrabId = t903RegimeTrabId;
     }
 
-    public T300cursos getT300cursos() {
-        return t300cursos;
+    public T900Usuario getT900UsuarioId() {
+        return t900UsuarioId;
     }
 
-    public void setT300cursos(T300cursos t300cursos) {
-        this.t300cursos = t300cursos;
+    public void setT900UsuarioId(T900Usuario t900UsuarioId) {
+        this.t900UsuarioId = t900UsuarioId;
     }
 
-    public T900Usuario getT900Usuario() {
-        return t900Usuario;
+    public Long getId() {
+        return id;
     }
 
-    public void setT900Usuario(T900Usuario t900Usuario) {
-        this.t900Usuario = t900Usuario;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public T300cursos getT300CursoId() {
+        return t300CursoId;
+    }
+
+    public void setT300CursoId(T300cursos t300CursoId) {
+        this.t300CursoId = t300CursoId;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (t500coordenadorPK != null ? t500coordenadorPK.hashCode() : 0);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof T500coordenador)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        T500coordenador other = (T500coordenador) object;
-        if ((this.t500coordenadorPK == null && other.t500coordenadorPK != null) || (this.t500coordenadorPK != null && !this.t500coordenadorPK.equals(other.t500coordenadorPK))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final T500coordenador other = (T500coordenador) obj;
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -197,7 +206,9 @@ public class T500coordenador implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.saaes.modelo.T500coordenador[ t500coordenadorPK=" + t500coordenadorPK + " ]";
+        return "T500coordenador{" + "id=" + id + ", atuacaoCoord=" + atuacaoCoord + ", cargaHoraria=" + cargaHoraria + ", dtCadastro=" + dtCadastro + ", ensDist=" + ensDist + ", ensSuper=" + ensSuper + ", ensTec=" + ensTec + ", gestAcademica=" + gestAcademica + ", nome=" + nome + ", t300CursosId=" + t300CursoId + ", t902TitulacaoId=" + t902TitulacaoId + ", t903RegimeTrabId=" + t903RegimeTrabId + ", t900UsuarioId=" + t900UsuarioId + '}';
     }
+
+
     
 }

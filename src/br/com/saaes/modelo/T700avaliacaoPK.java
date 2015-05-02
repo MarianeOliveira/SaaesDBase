@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package br.com.saaes.modelo;
 
@@ -10,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,29 +16,50 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class T700avaliacaoPK implements Serializable {
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private long id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_t900Usuario")
-    private long idt900Usuario;
+    @JoinColumn(name = "t900_usuario_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private T900Usuario t900UsuarioId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_curso")
-    private long idCurso;
-    @Basic(optional = false)
+    @JoinColumn(name = "t400_docente_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private T400docente t400docenteId;
+     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_docente")
-    private long idDocente;
+    @JoinColumn(name = "t300_curso_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private T300cursos t300cursoId;
 
     public T700avaliacaoPK() {
     }
+    
+    
 
-    public T700avaliacaoPK(long id, long idt900Usuario, long idCurso, long idDocente) {
-        this.id = id;
-        this.idt900Usuario = idt900Usuario;
-        this.idCurso = idCurso;
-        this.idDocente = idDocente;
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final T700avaliacaoPK other = (T700avaliacaoPK) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
     public long getId() {
@@ -52,65 +70,41 @@ public class T700avaliacaoPK implements Serializable {
         this.id = id;
     }
 
-    public long getIdt900Usuario() {
-        return idt900Usuario;
+    public T900Usuario getT900UsuarioId() {
+        return t900UsuarioId;
     }
 
-    public void setIdt900Usuario(long idt900Usuario) {
-        this.idt900Usuario = idt900Usuario;
+    public void setT900UsuarioId(T900Usuario t900UsuarioId) {
+        this.t900UsuarioId = t900UsuarioId;
     }
 
-    public long getIdCurso() {
-        return idCurso;
+    public T400docente getT400docenteId() {
+        return t400docenteId;
     }
 
-    public void setIdCurso(long idCurso) {
-        this.idCurso = idCurso;
+    public void setT400docenteId(T400docente t400docenteId) {
+        this.t400docenteId = t400docenteId;
     }
 
-    public long getIdDocente() {
-        return idDocente;
+    public T300cursos getT300cursoId() {
+        return t300cursoId;
     }
 
-    public void setIdDocente(long idDocente) {
-        this.idDocente = idDocente;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) id;
-        hash += (int) idt900Usuario;
-        hash += (int) idCurso;
-        hash += (int) idDocente;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof T700avaliacaoPK)) {
-            return false;
-        }
-        T700avaliacaoPK other = (T700avaliacaoPK) object;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (this.idt900Usuario != other.idt900Usuario) {
-            return false;
-        }
-        if (this.idCurso != other.idCurso) {
-            return false;
-        }
-        if (this.idDocente != other.idDocente) {
-            return false;
-        }
-        return true;
+    public void setT300cursoId(T300cursos t300cursoId) {
+        this.t300cursoId = t300cursoId;
     }
 
     @Override
     public String toString() {
-        return "br.com.saaes.modelo.T700avaliacaoPK[ id=" + id + ", idt900Usuario=" + idt900Usuario + ", idCurso=" + idCurso + ", idDocente=" + idDocente + " ]";
+        return "T700avaliacaoPK{" + "id=" + id + ", t900UsuarioId=" + t900UsuarioId + ", t400docenteId=" + t400docenteId + ", t300cursosId=" + t300cursoId + '}';
     }
-    
+
+    public T700avaliacaoPK(long id, T900Usuario t900UsuarioId, T400docente t400docenteId, T300cursos t300cursosId) {
+        this.id = id;
+        this.t900UsuarioId = t900UsuarioId;
+        this.t400docenteId = t400docenteId;
+        this.t300cursoId = t300cursosId;
+    }
+   
+  
 }

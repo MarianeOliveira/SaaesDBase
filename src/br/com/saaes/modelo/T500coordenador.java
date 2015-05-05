@@ -40,10 +40,6 @@ public class T500coordenador implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    
-    @Size(max = 100)
-    @Column(name = "atuacao_coord")
-    private String atuacaoCoord;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "carga_horaria")
     private BigDecimal cargaHoraria;
@@ -61,10 +57,12 @@ public class T500coordenador implements Serializable {
     @Size(max = 100)
     @Column(name = "nome")
     private String nome;
+    @JoinColumn(name = "t902_atuacao_coord", referencedColumnName = "id")
+    @ManyToOne
+    private T902titulacao t902AtuacaoCoord;
     @JoinColumn(name = "t300_curso_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private T300cursos t300CursoId;
-    
     @JoinColumn(name = "t902_titulacao_id", referencedColumnName = "id")
     @ManyToOne
     private T902titulacao t902TitulacaoId;
@@ -76,14 +74,6 @@ public class T500coordenador implements Serializable {
     private T900Usuario t900UsuarioId;
 
     public T500coordenador() {
-    }
-
-    public String getAtuacaoCoord() {
-        return atuacaoCoord;
-    }
-
-    public void setAtuacaoCoord(String atuacaoCoord) {
-        this.atuacaoCoord = atuacaoCoord;
     }
 
     public BigDecimal getCargaHoraria() {
@@ -206,8 +196,17 @@ public class T500coordenador implements Serializable {
 
     @Override
     public String toString() {
-        return "T500coordenador{" + "id=" + id + ", atuacaoCoord=" + atuacaoCoord + ", cargaHoraria=" + cargaHoraria + ", dtCadastro=" + dtCadastro + ", ensDist=" + ensDist + ", ensSuper=" + ensSuper + ", ensTec=" + ensTec + ", gestAcademica=" + gestAcademica + ", nome=" + nome + ", t300CursosId=" + t300CursoId + ", t902TitulacaoId=" + t902TitulacaoId + ", t903RegimeTrabId=" + t903RegimeTrabId + ", t900UsuarioId=" + t900UsuarioId + '}';
+        return "T500coordenador{" + "id=" + id + '}';
     }
+
+    public T902titulacao getT902AtuacaoCoord() {
+        return t902AtuacaoCoord;
+    }
+
+    public void setT902AtuacaoCoord(T902titulacao t902AtuacaoCoord) {
+        this.t902AtuacaoCoord = t902AtuacaoCoord;
+    }
+
 
 
     

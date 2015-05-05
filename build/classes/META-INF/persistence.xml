@@ -23,6 +23,8 @@
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.use_sql_comments" value="true"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saaes?zeroDateTimeBehavior=convertToNull"/>
+      <!--<property name="javax.persistence.jdbc.password" value="tccms2015"/>-->
+      <!--<property name="javax.persistence.jdbc.password" value="admin"/>-->
       <property name="javax.persistence.jdbc.password" value=""/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

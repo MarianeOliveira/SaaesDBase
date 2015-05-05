@@ -1,11 +1,9 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,14 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,11 +31,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = T400docente.FIND_ALL, query = "SELECT t FROM T400docente t")})
 public class T400docente implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T400docente.findAl";
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -81,7 +76,7 @@ public class T400docente implements Serializable {
     private Integer relacDocenteTutorEducDist;
     @Column(name = "respons_docente_assist_med")
     private Integer responsDocenteAssistMed;
-        
+
     @JoinColumn(name = "t300_curso_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private T300cursos t300CursoId;
@@ -101,11 +96,13 @@ public class T400docente implements Serializable {
     @JoinColumn(name = "t903_regime_trab_docente_id", referencedColumnName = "id")
     @ManyToOne
     private T903regimetrabalho t903RegimeTrabDocenteId;
+    
+    @Transient            
+    private Long tempoVinculo;
 
     public T400docente() {
     }
 
-   
     public Integer getCargaHoraria() {
         return cargaHoraria;
     }
@@ -282,6 +279,14 @@ public class T400docente implements Serializable {
         this.id = id;
     }
 
+    public T300cursos getT300CursoId() {
+        return t300CursoId;
+    }
+
+    public void setT300CursoId(T300cursos t300CursoId) {
+        this.t300CursoId = t300CursoId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -309,15 +314,11 @@ public class T400docente implements Serializable {
         return "T400docente{" + "id=" + id + '}';
     }
 
-
-
-    public T300cursos getT300CursoId() {
-        return t300CursoId;
+    public Long getTempoVinculo() {
+        return tempoVinculo;
     }
 
-    public void setT300CursoId(T300cursos t300CursoId) {
-        this.t300CursoId = t300CursoId;
+    public void setTempoVinculo(Long tempoVinculo) {
+        this.tempoVinculo = tempoVinculo;
     }
-
-    
 }

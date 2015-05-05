@@ -1,6 +1,8 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -8,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -18,9 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "t700avaliacao")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "T700avaliacao.findAll", query = "SELECT t FROM T700avaliacao t")})
+    @NamedQuery(name = T700avaliacao.FIND_ALL, query = "SELECT t FROM T700avaliacao t")})
 public class T700avaliacao implements Serializable {
     private static final long serialVersionUID = 1L;
+    public static final String FIND_ALL = "T700avaliacao.findAll";
     @EmbeddedId
     protected T700avaliacaoPK t700avaliacaoPK;
     @JoinColumn(name = "t906_tipo_ato_id", referencedColumnName = "id")
@@ -29,6 +34,9 @@ public class T700avaliacao implements Serializable {
     @JoinColumn(name = "t905_modalidade_id", referencedColumnName = "id")
     @ManyToOne
     private T905modalidade t905ModalidadeId;
+    @Column(name = "dt_cadastro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtAvaliacao;
 
 
     public T700avaliacao() {
@@ -90,5 +98,14 @@ public class T700avaliacao implements Serializable {
     public String toString() {
         return "br.com.saaes.modelo.T700avaliacao[ t700avaliacaoPK=" + t700avaliacaoPK + " ]";
     }
+
+    public Date getDtAvaliacao() {
+        return dtAvaliacao;
+    }
+
+    public void setDtAvaliacao(Date dtAvaliacao) {
+        this.dtAvaliacao = dtAvaliacao;
+    }
+
     
 }

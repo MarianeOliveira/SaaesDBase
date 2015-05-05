@@ -10,12 +10,12 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class T600bibliografia_ {
 
 	public static volatile SingularAttribute<T600bibliografia, Long> id;
-	public static volatile SingularAttribute<T600bibliografia, T900Usuario> T900Usuario;
-	public static volatile SingularAttribute<T600bibliografia, Integer> periodico;
 	public static volatile SingularAttribute<T600bibliografia, Integer> qntDisciplina;
+	public static volatile SingularAttribute<T600bibliografia, Integer> periodico;
 	public static volatile SingularAttribute<T600bibliografia, Integer> qntCompleta;
 	public static volatile SingularAttribute<T600bibliografia, Date> dtCadastro;
-	public static volatile SingularAttribute<T600bibliografia, T300cursos> t300cursos;
+	public static volatile SingularAttribute<T600bibliografia, T900Usuario> t900UsuarioId;
+	public static volatile SingularAttribute<T600bibliografia, T300cursos> t300CursoId;
 	public static volatile SingularAttribute<T600bibliografia, Integer> mediaCompleta;
 	public static volatile SingularAttribute<T600bibliografia, Integer> qntBasica;
 	public static volatile SingularAttribute<T600bibliografia, Integer> mediaBasica;

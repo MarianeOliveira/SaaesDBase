@@ -1,7 +1,7 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,12 +29,15 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "t300cursos")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = T300cursos.FIND_ALL, query = "SELECT t FROM T300cursos t"),
-    @NamedQuery(name = T300cursos.FIND_USUARIO, query = "SELECT t FROM T300cursos t WHERE t.t900Usuario = ?1 ")
+    @NamedQuery(name = T300cursos.FIND_USUARIO, query = "SELECT t FROM T300cursos t WHERE t.t900UsuarioId = ?1 "),
+    @NamedQuery(name = T300cursos.FIND_IES, query = "SELECT t FROM T300cursos t WHERE t.t200IesId = ?1 ")
 
 })
 public class T300cursos implements Serializable {
+    
     @OneToMany(mappedBy = "idCurso")
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T300cursos.findAll";
@@ -44,21 +49,21 @@ public class T300cursos implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
+    @Column(name = "ativo")
+    private Short ativo;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "carga_horaria")
+    private BigDecimal cargaHoraria;
+    @Column(name = "dt_cadastro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtCadastro;
+    @Column(name = "duracao_curso")
+    private BigDecimal duracaoCurso;
     @Size(max = 100)
     @Column(name = "nome")
-    private String nome = "";
-    @Column(name = "carga_horaria")
-    private BigInteger cargaHoraria;
-    @Column(name = "duracao_curso")
-    private BigInteger duracaoCurso;
+    private String nome;
     @Column(name = "num_alunos")
     private Integer numAlunos;
-    @Column(name = "tipo_ato")
-    private Integer tipoAto;
-    @Column(name = "modalidade")
-    private Integer modalidade;
-    @Column(name = "tipo_curso")
-    private Integer tipoCurso;
     @Column(name = "num_disciplinas")
     private Integer numDisciplinas;
     @Column(name = "num_egressos")
@@ -68,19 +73,24 @@ public class T300cursos implements Serializable {
     @Size(max = 8)
     @Column(name = "turno")
     private String turno;
-    @Column(name = "dt_cadastro")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtCadastro;
-    @Column(name = "ativo")
-    private Short ativo;
-   
-    @JoinColumn(name = "id_ies", referencedColumnName = "id")
-    @ManyToOne
-    private T200ies t200ies;
-    @JoinColumn(name = "id_t900_usuario", referencedColumnName = "id")
-    @ManyToOne
-    private T900Usuario t900Usuario;
     
+    @JoinColumn(name = "t907_tipo_curso_id", referencedColumnName = "id")
+    @ManyToOne
+    private T907tipocurso t907TipoCursoId;
+    @JoinColumn(name = "t906_tipo_ato_id", referencedColumnName = "id")
+    @ManyToOne
+    private T906tipoato t906TipoAtoId;
+    @JoinColumn(name = "t905_modalidade_id", referencedColumnName = "id")
+    @ManyToOne
+    private T905modalidade t905ModalidadeId;
+    @JoinColumn(name = "t900_usuario_id", referencedColumnName = "id")
+    @ManyToOne
+    private T900Usuario t900UsuarioId;
+    @JoinColumn(name = "t200_ies_id", referencedColumnName = "id")
+    @ManyToOne
+    private T200ies t200IesId;
+    
+
     public T300cursos() {
     }
 
@@ -96,28 +106,44 @@ public class T300cursos implements Serializable {
         this.id = id;
     }
 
+    public Short getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Short ativo) {
+        this.ativo = ativo;
+    }
+
+    public BigDecimal getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(BigDecimal cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public Date getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
+    }
+
+    public BigDecimal getDuracaoCurso() {
+        return duracaoCurso;
+    }
+
+    public void setDuracaoCurso(BigDecimal duracaoCurso) {
+        this.duracaoCurso = duracaoCurso;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public BigInteger getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(BigInteger cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    public BigInteger getDuracaoCurso() {
-        return duracaoCurso;
-    }
-
-    public void setDuracaoCurso(BigInteger duracaoCurso) {
-        this.duracaoCurso = duracaoCurso;
     }
 
     public Integer getNumAlunos() {
@@ -160,35 +186,44 @@ public class T300cursos implements Serializable {
         this.turno = turno;
     }
 
-    public Date getDtCadastro() {
-        return dtCadastro;
+    public T907tipocurso getT907TipoCursoId() {
+        return t907TipoCursoId;
     }
 
-    public void setDtCadastro(Date dtCadastro) {
-        this.dtCadastro = dtCadastro;
+    public void setT907TipoCursoId(T907tipocurso t907TipoCursoId) {
+        this.t907TipoCursoId = t907TipoCursoId;
     }
 
-    public Short getAtivo() {
-        return ativo;
+    public T906tipoato getT906TipoAtoId() {
+        return t906TipoAtoId;
     }
 
-    public void setAtivo(Short ativo) {
-        this.ativo = ativo;
-    }
-    public T200ies getT200ies() {
-        return t200ies;
+    public void setT906TipoAtoId(T906tipoato t906TipoAtoId) {
+        this.t906TipoAtoId = t906TipoAtoId;
     }
 
-    public void setT200ies(T200ies t200ies) {
-        this.t200ies = t200ies;
+    public T905modalidade getT905ModalidadeId() {
+        return t905ModalidadeId;
     }
 
-    public T900Usuario getT900Usuario() {
-        return t900Usuario;
+    public void setT905ModalidadeId(T905modalidade t905ModalidadeId) {
+        this.t905ModalidadeId = t905ModalidadeId;
     }
 
-    public void setT900Usuario(T900Usuario t900Usuario) {
-        this.t900Usuario = t900Usuario;
+    public T900Usuario getT900UsuarioId() {
+        return t900UsuarioId;
+    }
+
+    public void setT900UsuarioId(T900Usuario t900UsuarioId) {
+        this.t900UsuarioId = t900UsuarioId;
+    }
+
+    public T200ies getT200IesId() {
+        return t200IesId;
+    }
+
+    public void setT200IesId(T200ies t200IesId) {
+        this.t200IesId = t200IesId;
     }
 
     @Override
@@ -205,40 +240,12 @@ public class T300cursos implements Serializable {
             return false;
         }
         T300cursos other = (T300cursos) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
     }
 
     @Override
     public String toString() {
         return "br.com.saaes.modelo.T300cursos[ id=" + id + " ]";
     }
-
-    public Integer getTipoAto() {
-        return tipoAto;
-    }
-
-    public void setTipoAto(Integer tipoAto) {
-        this.tipoAto = tipoAto;
-    }
-
-    public Integer getModalidade() {
-        return modalidade;
-    }
-
-    public void setModalidade(Integer modalidade) {
-        this.modalidade = modalidade;
-    }
-
-    public Integer getTipoCurso() {
-        return tipoCurso;
-    }
-
-    public void setTipoCurso(Integer tipoCurso) {
-        this.tipoCurso = tipoCurso;
-    }
-
     
 }

@@ -220,3 +220,45 @@ INSERT INTO `saaes`.`t903regimetrabalho` (`id`, `descricao`) VALUES (3, 'HORISTA
 INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (1, 'CLT');
 INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (2, 'ESTATUTARIO');
 INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (3, 'OUTRO');
+
+
+CREATE TABLE `t905modalidade` (
+	`id` INT(11) NOT NULL,
+	`descricao` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+
+INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (1, 'PRESENCIAL');
+INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (2, 'SEMI PRESENCIAL');
+INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (3, 'A DISTANCIA');
+INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (4, 'MEDICINA');
+
+CREATE TABLE `t906tipoAto` (
+	`id` INT(11) NOT NULL,
+	`descricao` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+
+INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (1, 'AUTORIZAÇÃO');
+INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (2, 'RECONHECIMENTO');
+INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (3, 'RENOVAÇÃO');
+
+CREATE TABLE `t907tipoCurso` (
+	`id` INT(11) NOT NULL,
+	`descricao` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (1, 'BACHARELADO');
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (2, 'LICENCIATURA');
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (3, 'TECNOLOGO');
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (4, 'MEDICINA');

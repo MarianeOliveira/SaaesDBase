@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
@@ -15,27 +10,18 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author f4679646
+ * @author tefi
  */
 @Entity
 @Table(name = "t901conceitos")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = T901conceitos.FIND_ALL, query = "SELECT t FROM T901conceitos t"),
-    @NamedQuery(name = T901conceitos.FIND_ById, query = "SELECT t FROM T901conceitos t WHERE t.id = :id"),
-    @NamedQuery(name = T901conceitos.FIND_Bydescricao, query = "SELECT t FROM T901conceitos t WHERE t.descricao = :descricao")})
+    @NamedQuery(name = T901conceitos.FIND_ALL, query = "SELECT t FROM T901conceitos t")})
 public class T901conceitos implements Serializable {
     private static final long serialVersionUID = 1L;
-    
     public static final String FIND_ALL = "T901conceitos.findAll";
-    public static final String FIND_ById = "T901conceitos.findById";
-    public static final String FIND_Bydescricao = "T901conceitos.findAllT901conceitos.findByDescricao";
-    
-    
     @Id
     @Basic(optional = false)
     @NotNull

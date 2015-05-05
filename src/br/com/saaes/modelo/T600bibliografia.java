@@ -16,13 +16,15 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author f4679646
+ * @author tefi
  */
 @Entity
 @Table(name = "t600bibliografia")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "T600bibliografia.findAll", query = "SELECT t FROM T600bibliografia t")})
 public class T600bibliografia implements Serializable {
@@ -32,29 +34,29 @@ public class T600bibliografia implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Column(name = "media_basica")
-    private Integer mediaBasica;
-    @Column(name = "media_completa")
-    private Integer mediaCompleta;
-    @Column(name = "qnt_disciplina")
-    private Integer qntDisciplina;
-    @Column(name = "qnt_basica")
-    private Integer qntBasica;
-    @Column(name = "qnt_completa")
-    private Integer qntCompleta;
-    @Column(name = "periodico")
-    private Integer periodico;
     @Basic(optional = false)
     @NotNull
     @Column(name = "dt_cadastro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
-    @JoinColumn(name = "id_t900_usuario", referencedColumnName = "id")
+    @Column(name = "media_basica")
+    private Integer mediaBasica;
+    @Column(name = "media_completa")
+    private Integer mediaCompleta;
+    @Column(name = "periodico")
+    private Integer periodico;
+    @Column(name = "qnt_basica")
+    private Integer qntBasica;
+    @Column(name = "qnt_completa")
+    private Integer qntCompleta;
+    @Column(name = "qnt_disciplina")
+    private Integer qntDisciplina;
+    @JoinColumn(name = "t900_usuario_id", referencedColumnName = "id")
     @ManyToOne
-    private T900Usuario T900Usuario;
-    @JoinColumn(name = "id_curso", referencedColumnName = "id")
+    private T900Usuario t900UsuarioId;
+    @JoinColumn(name = "t300_curso_id", referencedColumnName = "id")
     @ManyToOne
-    private T300cursos t300cursos;
+    private T300cursos t300CursoId;
 
     public T600bibliografia() {
     }
@@ -76,6 +78,14 @@ public class T600bibliografia implements Serializable {
         this.id = id;
     }
 
+    public Date getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
+    }
+
     public Integer getMediaBasica() {
         return mediaBasica;
     }
@@ -92,12 +102,12 @@ public class T600bibliografia implements Serializable {
         this.mediaCompleta = mediaCompleta;
     }
 
-    public Integer getQntDisciplina() {
-        return qntDisciplina;
+    public Integer getPeriodico() {
+        return periodico;
     }
 
-    public void setQntDisciplina(Integer qntDisciplina) {
-        this.qntDisciplina = qntDisciplina;
+    public void setPeriodico(Integer periodico) {
+        this.periodico = periodico;
     }
 
     public Integer getQntBasica() {
@@ -116,36 +126,28 @@ public class T600bibliografia implements Serializable {
         this.qntCompleta = qntCompleta;
     }
 
-    public Integer getPeriodico() {
-        return periodico;
+    public Integer getQntDisciplina() {
+        return qntDisciplina;
     }
 
-    public void setPeriodico(Integer periodico) {
-        this.periodico = periodico;
+    public void setQntDisciplina(Integer qntDisciplina) {
+        this.qntDisciplina = qntDisciplina;
     }
 
-    public Date getDtCadastro() {
-        return dtCadastro;
+    public T900Usuario getT900UsuarioId() {
+        return t900UsuarioId;
     }
 
-    public void setDtCadastro(Date dtCadastro) {
-        this.dtCadastro = dtCadastro;
+    public void setT900UsuarioId(T900Usuario t900UsuarioId) {
+        this.t900UsuarioId = t900UsuarioId;
     }
 
-    public T900Usuario getT900Usuario() {
-        return T900Usuario;
+    public T300cursos getT300CursoId() {
+        return t300CursoId;
     }
 
-    public void setT900Usuario(T900Usuario T900Usuario) {
-        this.T900Usuario = T900Usuario;
-    }
-
-    public T300cursos getT300cursos() {
-        return t300cursos;
-    }
-
-    public void setT300cursos(T300cursos t300cursos) {
-        this.t300cursos = t300cursos;
+    public void setT300CursoId(T300cursos t300CursoId) {
+        this.t300CursoId = t300CursoId;
     }
 
     @Override

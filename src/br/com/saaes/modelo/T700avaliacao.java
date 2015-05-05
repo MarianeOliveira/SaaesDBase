@@ -1,12 +1,17 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,21 +22,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "t700avaliacao")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "T700avaliacao.findAll", query = "SELECT t FROM T700avaliacao t"),
-    @NamedQuery(name = "T700avaliacao.findById", query = "SELECT t FROM T700avaliacao t WHERE t.t700avaliacaoPK.id = :id"),
-    @NamedQuery(name = "T700avaliacao.findByIdt900Usuario", query = "SELECT t FROM T700avaliacao t WHERE t.t700avaliacaoPK.idt900Usuario = :idt900Usuario"),
-    @NamedQuery(name = "T700avaliacao.findByIdCurso", query = "SELECT t FROM T700avaliacao t WHERE t.t700avaliacaoPK.idCurso = :idCurso"),
-    @NamedQuery(name = "T700avaliacao.findByIdDocente", query = "SELECT t FROM T700avaliacao t WHERE t.t700avaliacaoPK.idDocente = :idDocente"),
-    @NamedQuery(name = "T700avaliacao.findByModalidade", query = "SELECT t FROM T700avaliacao t WHERE t.modalidade = :modalidade"),
-    @NamedQuery(name = "T700avaliacao.findByTipoAto", query = "SELECT t FROM T700avaliacao t WHERE t.tipoAto = :tipoAto")})
+    @NamedQuery(name = T700avaliacao.FIND_ALL, query = "SELECT t FROM T700avaliacao t")})
 public class T700avaliacao implements Serializable {
     private static final long serialVersionUID = 1L;
+    public static final String FIND_ALL = "T700avaliacao.findAll";
     @EmbeddedId
     protected T700avaliacaoPK t700avaliacaoPK;
-    @Column(name = "modalidade")
-    private Integer modalidade;
-    @Column(name = "tipo_ato")
-    private Integer tipoAto;
+    @JoinColumn(name = "t906_tipo_ato_id", referencedColumnName = "id")
+    @ManyToOne
+    private T906tipoato t906TipoAtoId;
+    @JoinColumn(name = "t905_modalidade_id", referencedColumnName = "id")
+    @ManyToOne
+    private T905modalidade t905ModalidadeId;
+    @Column(name = "dt_cadastro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtAvaliacao;
+
 
     public T700avaliacao() {
     }
@@ -40,8 +46,8 @@ public class T700avaliacao implements Serializable {
         this.t700avaliacaoPK = t700avaliacaoPK;
     }
 
-    public T700avaliacao(long id, long idt900Usuario, long idCurso, long idDocente) {
-        this.t700avaliacaoPK = new T700avaliacaoPK(id, idt900Usuario, idCurso, idDocente);
+    public T700avaliacao(long id, T300cursos t300CursoId, T400docente t400DocenteId, T900Usuario t900UsuarioId) {
+        this.t700avaliacaoPK = new T700avaliacaoPK(id, t900UsuarioId, t400DocenteId, t300CursoId);
     }
 
     public T700avaliacaoPK getT700avaliacaoPK() {
@@ -52,20 +58,20 @@ public class T700avaliacao implements Serializable {
         this.t700avaliacaoPK = t700avaliacaoPK;
     }
 
-    public Integer getModalidade() {
-        return modalidade;
+    public T906tipoato getT906TipoAtoId() {
+        return t906TipoAtoId;
     }
 
-    public void setModalidade(Integer modalidade) {
-        this.modalidade = modalidade;
+    public void setT906TipoAtoId(T906tipoato t906TipoAtoId) {
+        this.t906TipoAtoId = t906TipoAtoId;
     }
 
-    public Integer getTipoAto() {
-        return tipoAto;
+    public T905modalidade getT905ModalidadeId() {
+        return t905ModalidadeId;
     }
 
-    public void setTipoAto(Integer tipoAto) {
-        this.tipoAto = tipoAto;
+    public void setT905ModalidadeId(T905modalidade t905ModalidadeId) {
+        this.t905ModalidadeId = t905ModalidadeId;
     }
 
     @Override
@@ -92,5 +98,14 @@ public class T700avaliacao implements Serializable {
     public String toString() {
         return "br.com.saaes.modelo.T700avaliacao[ t700avaliacaoPK=" + t700avaliacaoPK + " ]";
     }
+
+    public Date getDtAvaliacao() {
+        return dtAvaliacao;
+    }
+
+    public void setDtAvaliacao(Date dtAvaliacao) {
+        this.dtAvaliacao = dtAvaliacao;
+    }
+
     
 }

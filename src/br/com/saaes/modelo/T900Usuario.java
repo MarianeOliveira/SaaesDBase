@@ -21,21 +21,20 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author 
  */
 @Entity
-@Table(name = "t900_usuario")
+@Table(name = "t900usuario")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = T900Usuario.BUSCA_TODOS, query = "SELECT t FROM T900Usuario t"),
     @NamedQuery(name = T900Usuario.BUSCA_USUARIO, query = "SELECT t FROM T900Usuario t WHERE t.usuario = ?1")})
 
 public class T900Usuario implements Serializable {
-    @Column(name = "telefone")
-    private BigInteger telefone;
 
     private static final long serialVersionUID = 1L;
     public static final String BUSCA_TODOS = "T900Usuario.findAll";
@@ -48,17 +47,18 @@ public class T900Usuario implements Serializable {
     @Column(name = "id")
     private Long id;
     @Size(max = 255)
+    @Column(name = "nome")
+    private String nome;
+    @Size(max = 255)
     @Column(name = "cd_usu_reg")
     private String cdUsuReg;
     @Size(max = 255)
     @Column(name = "cpf_cnpj")
     private String cpfCnpj;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "usuario")
-    
     private String usuario;
     @Size(max = 255)
     @Column(name = "senha")
@@ -69,13 +69,13 @@ public class T900Usuario implements Serializable {
     @Column(name = "dt_fim")
     @Temporal(TemporalType.DATE)
     private Date dtFim;
-    @Size(max = 255)
-    @Column(name = "nome")
-    private String nome;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 255)
     @Column(name = "email")
     private String email;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "telefone")
+    private BigDecimal telefone;
     @Column(name = "ativo")
     private Boolean ativo;
 
@@ -197,13 +197,12 @@ public class T900Usuario implements Serializable {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public BigInteger getTelefone() {
+    public BigDecimal getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(BigInteger telefone) {
+    public void setTelefone(BigDecimal telefone) {
         this.telefone = telefone;
     }
 
-    
 }

@@ -1,8 +1,8 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,19 +17,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author tefi
+ * @author 
  */
 @Entity
 @Table(name = "t200ies")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = T200ies.FIND_ALL, query = "SELECT t FROM T200ies t ")})
-
+    @NamedQuery(name = T200ies.FIND_ALL, query = "SELECT t FROM T200ies t ")
+})
 public class T200ies implements Serializable {
-    @OneToMany(mappedBy = "idIes")
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T200ies.findAll";
     @Id
@@ -39,22 +41,29 @@ public class T200ies implements Serializable {
     private Long id;
     @Size(max = 200)
     @Column(name = "nome")
-    private String nome = "";
+    private String nome;
     @Size(max = 200)
     @Column(name = "campus")
-    private String campus = "";
+    private String campus;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "dt_cadastro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
-    @JoinColumn(name = "id_t900_usuario", referencedColumnName = "id")
+    @JoinColumn(name = "t900_usuario_id", referencedColumnName = "id")
     @ManyToOne
-    private T900Usuario t900Usuario;
+    private T900Usuario t900UsuarioId;
     
     public T200ies() {
     }
 
     public T200ies(Long id) {
         this.id = id;
+    }
+
+    public T200ies(Long id, Date dtCadastro) {
+        this.id = id;
+        this.dtCadastro = dtCadastro;
     }
 
     public Long getId() {
@@ -89,12 +98,12 @@ public class T200ies implements Serializable {
         this.dtCadastro = dtCadastro;
     }
 
-    public T900Usuario getT900Usuario() {
-        return t900Usuario;
+    public T900Usuario getT900UsuarioId() {
+        return t900UsuarioId;
     }
 
-    public void setT900Usuario(T900Usuario t900Usuario) {
-        this.t900Usuario = t900Usuario;
+    public void setT900UsuarioId(T900Usuario t900UsuarioId) {
+        this.t900UsuarioId = t900UsuarioId;
     }
 
     @Override
@@ -121,6 +130,4 @@ public class T200ies implements Serializable {
     public String toString() {
         return "br.com.saaes.modelo.T200ies[ id=" + id + " ]";
     }
-
-    
 }

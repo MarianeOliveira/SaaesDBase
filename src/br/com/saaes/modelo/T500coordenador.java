@@ -42,7 +42,7 @@ public class T500coordenador implements Serializable {
     private Long id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "carga_horaria")
-    private BigDecimal cargaHoraria;
+    private Long cargaHoraria;
     @Column(name = "dt_cadastro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
@@ -76,11 +76,11 @@ public class T500coordenador implements Serializable {
     public T500coordenador() {
     }
 
-    public BigDecimal getCargaHoraria() {
+    public Long getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public void setCargaHoraria(BigDecimal cargaHoraria) {
+    public void setCargaHoraria(Long cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
 

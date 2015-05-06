@@ -2,11 +2,8 @@ package br.com.saaes.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,14 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -50,19 +45,14 @@ public class T900Usuario implements Serializable {
     @Column(name = "nome")
     private String nome;
     @Size(max = 255)
+    @Column(name = "nome_reduzido")
+    private String nomeReduzido;
+    @Size(max = 255)
     @Column(name = "cd_usu_reg")
     private String cdUsuReg;
     @Size(max = 255)
     @Column(name = "cpf_cnpj")
     private String cpfCnpj;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "usuario")
-    private String usuario;
-    @Size(max = 255)
-    @Column(name = "senha")
-    private String senha;
     @Column(name = "dt_inc")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtInc;
@@ -76,6 +66,14 @@ public class T900Usuario implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "telefone")
     private BigDecimal telefone;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "usuario")
+    private String usuario;
+    @Size(max = 255)
+    @Column(name = "senha")
+    private String senha;
     @Column(name = "ativo")
     private Boolean ativo;
 
@@ -203,6 +201,14 @@ public class T900Usuario implements Serializable {
 
     public void setTelefone(BigDecimal telefone) {
         this.telefone = telefone;
+    }
+
+    public String getNomeReduzido() {
+        return nomeReduzido;
+    }
+
+    public void setNomeReduzido(String nomeReduzido) {
+        this.nomeReduzido = nomeReduzido;
     }
 
 }

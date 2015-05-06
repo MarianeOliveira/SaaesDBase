@@ -14,8 +14,9 @@ public abstract class T900Usuario_ {
 	public static volatile SingularAttribute<T900Usuario, Date> dtInc;
 	public static volatile SingularAttribute<T900Usuario, String> cpfCnpj;
 	public static volatile SingularAttribute<T900Usuario, Date> dtFim;
-	public static volatile SingularAttribute<T900Usuario, String> email;
 	public static volatile SingularAttribute<T900Usuario, String> usuario;
+	public static volatile SingularAttribute<T900Usuario, String> email;
+	public static volatile SingularAttribute<T900Usuario, String> nomeReduzido;
 	public static volatile SingularAttribute<T900Usuario, Boolean> ativo;
 	public static volatile SingularAttribute<T900Usuario, BigDecimal> telefone;
 	public static volatile SingularAttribute<T900Usuario, String> nome;

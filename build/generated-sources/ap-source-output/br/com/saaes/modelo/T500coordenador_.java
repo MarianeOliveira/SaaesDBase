@@ -1,6 +1,5 @@
 package br.com.saaes.modelo;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
@@ -15,7 +14,7 @@ public abstract class T500coordenador_ {
 	public static volatile SingularAttribute<T500coordenador, T902titulacao> t902AtuacaoCoord;
 	public static volatile SingularAttribute<T500coordenador, Integer> ensDist;
 	public static volatile SingularAttribute<T500coordenador, Date> dtCadastro;
-	public static volatile SingularAttribute<T500coordenador, BigDecimal> cargaHoraria;
+	public static volatile SingularAttribute<T500coordenador, Long> cargaHoraria;
 	public static volatile SingularAttribute<T500coordenador, Integer> ensSuper;
 	public static volatile SingularAttribute<T500coordenador, T900Usuario> t900UsuarioId;
 	public static volatile SingularAttribute<T500coordenador, T300cursos> t300CursoId;

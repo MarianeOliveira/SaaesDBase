@@ -26,9 +26,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "t600bibliografia")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "T600bibliografia.findAll", query = "SELECT t FROM T600bibliografia t")})
+    @NamedQuery(name = T600bibliografia.FIND_ALL, query = "SELECT t FROM T600bibliografia t")})
 public class T600bibliografia implements Serializable {
     private static final long serialVersionUID = 1L;
+    public static final String FIND_ALL = "T600bibliografia.findAll";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

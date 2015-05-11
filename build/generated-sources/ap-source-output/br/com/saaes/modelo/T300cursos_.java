@@ -12,19 +12,25 @@ public abstract class T300cursos_ {
 
 	public static volatile SingularAttribute<T300cursos, Integer> numEgressos;
 	public static volatile SingularAttribute<T300cursos, T200ies> t200IesId;
-	public static volatile SingularAttribute<T300cursos, Date> dtCadastro;
+	public static volatile SingularAttribute<T300cursos, Integer> cargaHorariaLibras;
+	public static volatile SingularAttribute<T300cursos, Integer> numAlunosMatriculados;
 	public static volatile SingularAttribute<T300cursos, T907tipocurso> t907TipoCursoId;
-	public static volatile SingularAttribute<T300cursos, Integer> numDisciplinas;
+	public static volatile SingularAttribute<T300cursos, Date> dtCadastro;
+	public static volatile SingularAttribute<T300cursos, Integer> cargaHorariaTcc;
 	public static volatile SingularAttribute<T300cursos, T900Usuario> t900UsuarioId;
 	public static volatile SingularAttribute<T300cursos, String> turno;
-	public static volatile SingularAttribute<T300cursos, Integer> numAlunos;
+	public static volatile SingularAttribute<T300cursos, Integer> numAtualMatriculadosPeriodo;
 	public static volatile SingularAttribute<T300cursos, Integer> numVagas;
 	public static volatile SingularAttribute<T300cursos, BigDecimal> duracaoCurso;
 	public static volatile SingularAttribute<T300cursos, Long> id;
+	public static volatile SingularAttribute<T300cursos, Integer> numTotalDisciplinas;
 	public static volatile SingularAttribute<T300cursos, T905modalidade> t905ModalidadeId;
+	public static volatile SingularAttribute<T300cursos, Integer> cargaHorariaMinima;
 	public static volatile SingularAttribute<T300cursos, T906tipoato> t906TipoAtoId;
-	public static volatile SingularAttribute<T300cursos, BigDecimal> cargaHoraria;
+	public static volatile SingularAttribute<T300cursos, Integer> cargaHoraria;
+	public static volatile SingularAttribute<T300cursos, Integer> cargaHorariaEstagio;
 	public static volatile SingularAttribute<T300cursos, Short> ativo;
+	public static volatile SingularAttribute<T300cursos, Integer> numVagasAnuais;
 	public static volatile SingularAttribute<T300cursos, String> nome;
 
 }

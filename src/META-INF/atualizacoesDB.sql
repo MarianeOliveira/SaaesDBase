@@ -1,168 +1,197 @@
 CREATE TABLE `t200ies` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`nome` VARCHAR(200) NULL DEFAULT '0',
-	`campus` VARCHAR(200) NULL DEFAULT '0',
-	`id_t900_usuario` BIGINT(20) NULL DEFAULT '0',
+	`nome` VARCHAR(200) NULL DEFAULT NULL,
+	`campus` VARCHAR(200) NULL DEFAULT NULL,
 	`dt_cadastro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`t900_usuario_id` BIGINT(20) NULL DEFAULT NULL,
 	PRIMARY KEY (`id`),
-	INDEX `FK_t300ies_t900_usuario` (`id_t900_usuario`),
-	CONSTRAINT `FK_t200ies_t900_usuario` FOREIGN KEY (`id_t900_usuario`) REFERENCES `t900_usuario` (`id`)
+	INDEX `FK_200_t900` (`t900_usuario_id`),
+	CONSTRAINT `FK_t200_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`)
 )
-COLLATE='utf8_general_ci'
+COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=4;
 
 CREATE TABLE `t300cursos` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`id_ies` BIGINT(20) NULL DEFAULT '0',
-	`nome` VARCHAR(100) NULL DEFAULT '0',
-	`carga_horaria` BIGINT(20) NULL DEFAULT '0',
-	`duracao_curso` BIGINT(20) NULL DEFAULT '0',
-	`num_alunos` INT(11) NULL DEFAULT '0',
-	`num_disciplinas` INT(11) NULL DEFAULT '0',
-	`num_egressos` INT(11) NULL DEFAULT '0',
-	`num_vagas` INT(11) NULL DEFAULT '0',
+	`nome` VARCHAR(100) NULL DEFAULT NULL,
+	`t200_ies_id` BIGINT(20) NULL DEFAULT NULL,
+	`t905_modalidade_id` INT(11) NULL DEFAULT NULL,
+	`t906_tipo_ato_id` INT(11) NULL DEFAULT NULL,
+	`t907_tipo_curso_id` INT(11) NULL DEFAULT NULL,
+	`carga_horaria` INT(11) NULL DEFAULT NULL,
+	`duracao_curso` DECIMAL(10,0) NULL DEFAULT NULL,
+	`carga_horaria_estagio` INT(11) NULL DEFAULT NULL,
+	`carga_horaria_libras` INT(11) NULL DEFAULT NULL,
+	`carga_horaria_minima` INT(11) NULL DEFAULT NULL,
+	`carga_horaria_tcc` INT(11) NULL DEFAULT NULL,
+	`num_alunos_matriculados` INT(11) NULL DEFAULT NULL,
+	`num_atual_matriculados_periodo` INT(11) NULL DEFAULT NULL,
+	`num_egressos` INT(11) NULL DEFAULT NULL,
+	`num_total_disciplinas` INT(11) NULL DEFAULT NULL,
+	`num_vagas` INT(11) NULL DEFAULT NULL,
+	`num_vagas_anuais` INT(11) NULL DEFAULT NULL,
+	`t900_usuario_id` BIGINT(20) NULL DEFAULT NULL,
 	`turno` ENUM('MANHA','TARDE','NOITE','INTEGRAL') NULL DEFAULT NULL,
-	`dt_cadastro` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	`id_t900_usuario` BIGINT(20) NULL DEFAULT NULL,
-	`ativo` TINYINT(4) NULL DEFAULT '0',
-	`modalidade` INT(11) NULL DEFAULT NULL,
-	`tipo_ato` INT(11) NULL DEFAULT NULL,
-	`tipo_curso` INT(11) NULL DEFAULT NULL,
+	`dt_cadastro` DATETIME NULL DEFAULT NULL,
+	`ativo` SMALLINT(6) NULL DEFAULT '1',
 	PRIMARY KEY (`id`),
-	INDEX `FK_t200cursos_t200ies` (`id_ies`),
-	INDEX `FK_t200cursos_t900_usuario` (`id_t900_usuario`),
-	CONSTRAINT `FK_t200cursos_t200ies` FOREIGN KEY (`id_ies`) REFERENCES `t200ies` (`id`),
-	CONSTRAINT `FK_t200cursos_t900_usuario` FOREIGN KEY (`id_t900_usuario`) REFERENCES `t900_usuario` (`id`)
+	INDEX `FK_t300_t200` (`t200_ies_id`),
+	INDEX `FK_t300_t900` (`t900_usuario_id`),
+	INDEX `FK_t300_t905` (`t905_modalidade_id`),
+	INDEX `FK_t300_t906` (`t906_tipo_ato_id`),
+	INDEX `FK_t300_t907` (`t907_tipo_curso_id`),
+	CONSTRAINT `FK_t300_t906` FOREIGN KEY (`t906_tipo_ato_id`) REFERENCES `t906tipoato` (`id`),
+	CONSTRAINT `FK_t300_t200` FOREIGN KEY (`t200_ies_id`) REFERENCES `t200ies` (`id`),
+	CONSTRAINT `FK_t300_t905` FOREIGN KEY (`t905_modalidade_id`) REFERENCES `t905modalidade` (`id`),
+	CONSTRAINT `FK_t300_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`),
+	CONSTRAINT `FK_t300_t907` FOREIGN KEY (`t907_tipo_curso_id`) REFERENCES `t907tipocurso` (`id`)
 )
-COLLATE='utf8_general_ci'
+COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=4;
+AUTO_INCREMENT=2;
 
 
 CREATE TABLE `t400docente` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`id_curso` BIGINT(20) NOT NULL DEFAULT '0',
-	`id_t900_usuario` BIGINT(20) NULL DEFAULT '0',
-	`nome` VARCHAR(100) NULL DEFAULT '0',
-	`expr_coord_cur_dist` INT(11) NULL DEFAULT '0',
-	`expr_prof_magist_coord` INT(11) NULL DEFAULT '0',
-	`regime_trab_coord` INT(11) NULL DEFAULT '0',
-	`carga_horaria` INT(11) NULL DEFAULT '0',
-	`tit_corpo_docente` INT(11) NULL DEFAULT '0',
-	`perc_doutores` INT(11) NULL DEFAULT '0',
-	`regime_trab_docente` INT(11) NULL DEFAULT '0',
-	`vinculo_trabalho` INT(11) NULL DEFAULT '0',
+	`nome` VARCHAR(200) NULL DEFAULT NULL,
+	`qnt_alunos` INT(11) NULL DEFAULT NULL,
+	`qnt_discliplinas` INT(11) NULL DEFAULT NULL,
+	`qnt_media_disciplinas_dois_anos` INT(11) NULL DEFAULT NULL,
+	`carga_horaria_ativ_complementar` INT(11) NULL DEFAULT NULL,
+	`carga_horaria_em_aula` INT(11) NULL DEFAULT NULL,
+	`carga_horaria_outros_cursos` INT(11) NULL DEFAULT NULL,
+	`carga_horaria_semanal` INT(11) NULL DEFAULT NULL,
+	`tempo_fora_magist` INT(11) NULL DEFAULT NULL,
+	`tempo_magist_exp_educacao` INT(11) NULL DEFAULT NULL,
 	`dt_admissao` DATE NULL DEFAULT NULL,
-	`exp_prof_corp_docente` ENUM('SIM','NAO') NOT NULL,
-	`exp_exerc_docencia_educ` INT(11) NULL DEFAULT '0',
-	`exp_magist_super_corp_docente` INT(11) NULL DEFAULT '0',
-	`relac_docente_estudante` INT(11) NULL DEFAULT '0',
-	`prod_cien_cult_art_tec` INT(11) NULL DEFAULT '0',
-	`exp_corpo_tutores_educ_dist` INT(11) NULL DEFAULT '0',
-	`relac_docente_tutor_educ_dist` INT(11) NULL DEFAULT '0',
-	`respons_docente_assist_med` INT(11) NULL DEFAULT '0',
-	`nucleo_apoio_exp_docente` INT(11) NULL DEFAULT '0',
-	`dt_cadastro` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (`id`, `id_curso`),
-	INDEX `FK_t400docente_t300cursos` (`id_curso`),
-	INDEX `FK_t400docente_t900_usuario` (`id_t900_usuario`),
-	INDEX `FK_fboy5oow1ln16ehhy5ug25imo` (`regime_trab_coord`),
-	INDEX `FK_1sfc59f5fgodp78oga2hq404j` (`regime_trab_docente`),
-	INDEX `FK_gitbs1j5yvpjqvln9q4tug55v` (`tit_corpo_docente`),
-	INDEX `FK_6rtsecn30au3atygipuadlws9` (`vinculo_trabalho`),
-	CONSTRAINT `FK_t400docente_t300cursos` FOREIGN KEY (`id_curso`) REFERENCES `t300cursos` (`id`),
-	CONSTRAINT `FK_t400docente_t900_usuario` FOREIGN KEY (`id_t900_usuario`) REFERENCES `t900_usuario` (`id`),
-	CONSTRAINT `FK_t400docente_t902` FOREIGN KEY (`tit_corpo_docente`) REFERENCES `t902titulacao` (`id`),
-	CONSTRAINT `FK_t400docente_t903Coord` FOREIGN KEY (`regime_trab_coord`) REFERENCES `t903regimetrabalho` (`id`),
-	CONSTRAINT `FK_t400docente_t903Doc` FOREIGN KEY (`regime_trab_docente`) REFERENCES `t903regimetrabalho` (`id`),
-	CONSTRAINT `FK_t400docente_t904` FOREIGN KEY (`vinculo_trabalho`) REFERENCES `t904vinculoempregaticio` (`id`)
+	`dt_cadastro` DATETIME NULL DEFAULT NULL,
+	`artigos_publicados_area` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`formacao_capacit_exper_pedagogica` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`artigos_publicados_outras_areas` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`livros_publicados_area` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`livros_publicados_outras_areas` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`prod_didatico_pedagogica` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`proj_produc_tec_artisitica_cultural` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`propriedade_intelectual_depositada` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`propriedade_intelectual_registrada` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`trabalhos_publicados_anais_completo` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`trabalhos_publicados_anais_resumo` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`traduc_cap_art_publicados` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`t200_ies_id` BIGINT(20) NULL DEFAULT NULL,
+	`t900_usuario_id` BIGINT(20) NULL DEFAULT NULL,
+	`t902_titulacao_maxima_id` INT(11) NULL DEFAULT NULL,
+	`t903_regime_trab_id` INT(11) NULL DEFAULT NULL,
+	`t904_vinculo_empregaticio_id` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `FK_t400_t200` (`t200_ies_id`),
+	INDEX `FK_t400_t900` (`t900_usuario_id`),
+	INDEX `FK_t400_t902` (`t902_titulacao_maxima_id`),
+	INDEX `FK_t400_t903` (`t903_regime_trab_id`),
+	INDEX `FK_t400_t904` (`t904_vinculo_empregaticio_id`),
+	CONSTRAINT `FK_t400_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`),
+	CONSTRAINT `FK_t400_t904` FOREIGN KEY (`t904_vinculo_empregaticio_id`) REFERENCES `t904vinculoempregaticio` (`id`),
+	CONSTRAINT `FK_t400_t903` FOREIGN KEY (`t903_regime_trab_id`) REFERENCES `t903regimetrabalho` (`id`),
+	CONSTRAINT `FK_t400_t902` FOREIGN KEY (`t902_titulacao_maxima_id`) REFERENCES `t902titulacao` (`id`),
+	CONSTRAINT `FK_t400_t200` FOREIGN KEY (`t200_ies_id`) REFERENCES `t200ies` (`id`)
 )
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB;
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=4;
 
 
 CREATE TABLE `t500coordenador` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`id_curso` BIGINT(20) NOT NULL DEFAULT '0',
-	`nome` VARCHAR(100) NULL DEFAULT NULL,
-	`atuacao_coord` VARCHAR(100) NULL DEFAULT NULL,
-	`carga_horaria` BIGINT(20) NULL DEFAULT NULL,
-	`ens_dist` INT(11) NULL DEFAULT NULL,
-	`ens_super` INT(11) NULL DEFAULT NULL,
-	`ens_tec` INT(11) NULL DEFAULT NULL,
+	`ens_dist` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`ens_super` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`ens_tec` ENUM('SIM','NAO') NULL DEFAULT NULL,
 	`gest_academica` INT(11) NULL DEFAULT NULL,
-	`regime_trab` INT(11) NULL DEFAULT NULL,
-	`titulacao` INT(11) NULL DEFAULT NULL,
-	`id_t900_usuario` BIGINT(20) NULL DEFAULT NULL,
-	`dt_cadastro` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (`id`, `id_curso`),
-	INDEX `FK_t500Coordenador_t300cursos` (`id_curso`),
-	INDEX `FK_t500coordenador_t900_usuario` (`id_t900_usuario`),
-	CONSTRAINT `FK_t500Coordenador_t300cursos` FOREIGN KEY (`id_curso`) REFERENCES `t300cursos` (`id`),
-	CONSTRAINT `FK_t500coordenador_t900_usuario` FOREIGN KEY (`id_t900_usuario`) REFERENCES `t900_usuario` (`id`)
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB;
-
-
-CREATE TABLE `t600bibliografia` (
-	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`dt_cadastro` DATETIME NOT NULL,
-	`media_basica` INT(11) NULL DEFAULT NULL,
-	`media_completa` INT(11) NULL DEFAULT NULL,
-	`periodico` INT(11) NULL DEFAULT NULL,
-	`qnt_basica` INT(11) NULL DEFAULT NULL,
-	`qnt_completa` INT(11) NULL DEFAULT NULL,
-	`qnt_disciplina` INT(11) NULL DEFAULT NULL,
-	`id_t900_usuario` BIGINT(20) NULL DEFAULT NULL,
-	`id_curso` BIGINT(20) NULL DEFAULT NULL,
+	`carga_horaria` INT(11) NULL DEFAULT NULL,
+	`t400_docente_id` BIGINT(20) NULL DEFAULT NULL,
+	`t300_curso_id` BIGINT(20) NULL DEFAULT NULL,
+	`t900_usuario_id` BIGINT(20) NULL DEFAULT NULL,
+	`t902_titulacao_id` INT(11) NULL DEFAULT NULL,
+	`t903_regime_trab_id` INT(11) NULL DEFAULT NULL,
+	`dt_cadastro` DATETIME NULL DEFAULT NULL,
 	PRIMARY KEY (`id`),
-	INDEX `FK_ryil6nunfnn00j06hd9b01xv8` (`id_t900_usuario`),
-	INDEX `FK_9q9b954wbbqq9v6cj7iihinff` (`id_curso`),
-	CONSTRAINT `FK_9q9b954wbbqq9v6cj7iihinff` FOREIGN KEY (`id_curso`) REFERENCES `t300cursos` (`id`),
-	CONSTRAINT `FK_ryil6nunfnn00j06hd9b01xv8` FOREIGN KEY (`id_t900_usuario`) REFERENCES `t900_usuario` (`id`)
+	INDEX `FK_t500_t400` (`t400_docente_id`),
+	INDEX `FK_t500_t300` (`t300_curso_id`),
+	INDEX `FK_t500_t900` (`t900_usuario_id`),
+	INDEX `FK_t500_t902` (`t902_titulacao_id`),
+	INDEX `FK_t500_t903` (`t903_regime_trab_id`),
+	CONSTRAINT `FK_t500_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`),
+	CONSTRAINT `FK_t500_t400` FOREIGN KEY (`t400_docente_id`) REFERENCES `t400docente` (`id`),
+	CONSTRAINT `FK_t500_t300` FOREIGN KEY (`t300_curso_id`) REFERENCES `t300cursos` (`id`),
+	CONSTRAINT `FK_t500_t902` FOREIGN KEY (`t902_titulacao_id`) REFERENCES `t902titulacao` (`id`),
+	CONSTRAINT `FK_t500_t903` FOREIGN KEY (`t903_regime_trab_id`) REFERENCES `t903regimetrabalho` (`id`)
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
-CREATE TABLE `t600biografia` (
+CREATE TABLE `t600bibliografia` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`id_curso` BIGINT(20) NULL DEFAULT '0',
-	`media_basica` INT(11) NULL DEFAULT '0',
-	`media_completa` INT(11) NULL DEFAULT '0',
-	`qnt_disciplina` INT(11) NULL DEFAULT '0',
-	`qnt_basica` INT(11) NULL DEFAULT '0',
-	`qnt_completa` INT(11) NULL DEFAULT '0',
-	`periodico` INT(11) NULL DEFAULT '0',
-	`id_t900_usuario` BIGINT(20) NULL DEFAULT '0',
-	`dt_cadastro` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	`periodico` INT(11) NULL DEFAULT NULL,
+	`qnt_disciplina` INT(11) NULL DEFAULT NULL,
+	`qnt_basica` INT(11) NULL DEFAULT NULL,
+	`qnt_completa` INT(11) NULL DEFAULT NULL,
+	`media_basica` INT(11) NULL DEFAULT NULL,
+	`media_completa` INT(11) NULL DEFAULT NULL,
+	`t300_curso_id` BIGINT(20) NULL DEFAULT NULL,
+	`t900_usuario_id` BIGINT(20) NULL DEFAULT NULL,
+	`dt_cadastro` DATETIME NULL DEFAULT NULL,
 	PRIMARY KEY (`id`),
-	INDEX `FK_t600biografia_t300cursos` (`id_curso`),
-	INDEX `FK_t600biografia_t900_usuario` (`id_t900_usuario`),
-	CONSTRAINT `FK_t600biografia_t300cursos` FOREIGN KEY (`id_curso`) REFERENCES `t300cursos` (`id`),
-	CONSTRAINT `FK_t600biografia_t900_usuario` FOREIGN KEY (`id_t900_usuario`) REFERENCES `t900_usuario` (`id`)
+	INDEX `FK_t600_t300` (`t300_curso_id`),
+	INDEX `FK_t600_t900` (`t900_usuario_id`),
+	CONSTRAINT `FK_t600_t300` FOREIGN KEY (`t300_curso_id`) REFERENCES `t300cursos` (`id`),
+	CONSTRAINT `FK_t600_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`)
 )
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB;
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=3;
+
 
 CREATE TABLE `t700avaliacao` (
-	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`id_t900Usuario` BIGINT(20) NOT NULL DEFAULT '0',
-	`id_curso` BIGINT(20) NOT NULL DEFAULT '0',
-	`id_docente` BIGINT(20) NOT NULL DEFAULT '0',
-	`modalidade` INT(11) NULL DEFAULT '0',
-	`tipo_ato` INT(11) NULL DEFAULT '0',
-	PRIMARY KEY (`id`, `id_t900Usuario`, `id_curso`, `id_docente`),
-	INDEX `FK__t900_usuario` (`id_t900Usuario`),
-	INDEX `FK__t300cursos` (`id_curso`),
-	INDEX `FK__t400docente` (`id_docente`),
-	CONSTRAINT `FK__t300cursos` FOREIGN KEY (`id_curso`) REFERENCES `t300cursos` (`id`),
-	CONSTRAINT `FK__t400docente` FOREIGN KEY (`id_docente`) REFERENCES `t400docente` (`id`),
-	CONSTRAINT `FK__t900_usuario` FOREIGN KEY (`id_t900Usuario`) REFERENCES `t900_usuario` (`id`)
+	`id` BIGINT(20) NOT NULL,
+	`t400_docente_id` BIGINT(20) NOT NULL,
+	`t900_usuario_id` BIGINT(20) NOT NULL,
+	`t300_curso_id` BIGINT(20) NOT NULL,
+	`t905_modalidade_id` INT(11) NULL DEFAULT NULL,
+	`t906_tipo_ato_id` INT(11) NULL DEFAULT NULL,
+	`dt_cadastro` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`, `t300_curso_id`, `t400_docente_id`, `t900_usuario_id`),
+	INDEX `FK_t700_t400` (`t400_docente_id`),
+	INDEX `FK_t700_t900` (`t900_usuario_id`),
+	INDEX `FK_t700_t300` (`t300_curso_id`),
+	INDEX `FK_t700_t905` (`t905_modalidade_id`),
+	INDEX `FK_t700_t906` (`t906_tipo_ato_id`),
+	CONSTRAINT `FK_t700_t300` FOREIGN KEY (`t300_curso_id`) REFERENCES `t300cursos` (`id`),
+	CONSTRAINT `FK_t700_t400` FOREIGN KEY (`t400_docente_id`) REFERENCES `t400docente` (`id`),
+	CONSTRAINT `FK_t700_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`),
+	CONSTRAINT `FK_t700_t905` FOREIGN KEY (`t905_modalidade_id`) REFERENCES `t905modalidade` (`id`),
+	CONSTRAINT `FK_t700_t906` FOREIGN KEY (`t906_tipo_ato_id`) REFERENCES `t906tipoato` (`id`)
 )
-COLLATE='utf8_general_ci'
+COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
+
+
+CREATE TABLE `t900usuario` (
+	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+	`ativo` TINYINT(1) NULL DEFAULT NULL,
+	`cd_usu_reg` VARCHAR(255) NULL DEFAULT NULL,
+	`cpf_cnpj` VARCHAR(255) NULL DEFAULT NULL,
+	`dt_fim` DATE NULL DEFAULT NULL,
+	`dt_inc` DATETIME NULL DEFAULT NULL,
+	`email` VARCHAR(255) NULL DEFAULT NULL,
+	`nome` VARCHAR(255) NULL DEFAULT NULL,
+	`senha` VARCHAR(255) NULL DEFAULT NULL,
+	`telefone` DECIMAL(19,2) NULL DEFAULT NULL,
+	`usuario` VARCHAR(255) NOT NULL,
+	`nome_reduzido` VARCHAR(255) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=3;
 
 
 CREATE TABLE `t901conceitos` (
@@ -191,7 +220,6 @@ CREATE TABLE `t903regimetrabalho` (
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
-
 CREATE TABLE `t904vinculoempregaticio` (
 	`id` INT(11) NOT NULL,
 	`descricao` VARCHAR(50) NULL DEFAULT NULL,
@@ -199,6 +227,35 @@ CREATE TABLE `t904vinculoempregaticio` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
+
+CREATE TABLE `t905modalidade` (
+	`id` INT(11) NOT NULL,
+	`descricao` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+CREATE TABLE `t906tipoAto` (
+	`id` INT(11) NOT NULL,
+	`descricao` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+CREATE TABLE `t907tipoCurso` (
+	`id` INT(11) NOT NULL,
+	`descricao` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (1, 'BACHARELADO');
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (2, 'LICENCIATURA');
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (3, 'TECNOLOGO');
+INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (4, 'MEDICINA');
 
 
 INSERT INTO `saaes`.`t901conceitos` (`id`,`descricao`) VALUES (1, 'NÃO EXISTENTE');
@@ -221,44 +278,11 @@ INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (1, 'CL
 INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (2, 'ESTATUTARIO');
 INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (3, 'OUTRO');
 
-
-CREATE TABLE `t905modalidade` (
-	`id` INT(11) NOT NULL,
-	`descricao` VARCHAR(50) NULL DEFAULT NULL,
-	PRIMARY KEY (`id`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
-
+INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (1, 'AUTORIZAÇÃO');
+INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (2, 'RECONHECIMENTO');
+INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (3, 'RENOVAÇÃO');
 
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (1, 'PRESENCIAL');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (2, 'SEMI PRESENCIAL');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (3, 'A DISTANCIA');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (4, 'MEDICINA');
-
-CREATE TABLE `t906tipoAto` (
-	`id` INT(11) NOT NULL,
-	`descricao` VARCHAR(50) NULL DEFAULT NULL,
-	PRIMARY KEY (`id`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
-
-
-INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (1, 'AUTORIZAÇÃO');
-INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (2, 'RECONHECIMENTO');
-INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (3, 'RENOVAÇÃO');
-
-CREATE TABLE `t907tipoCurso` (
-	`id` INT(11) NOT NULL,
-	`descricao` VARCHAR(50) NULL DEFAULT NULL,
-	PRIMARY KEY (`id`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
-
-
-INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (1, 'BACHARELADO');
-INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (2, 'LICENCIATURA');
-INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (3, 'TECNOLOGO');
-INSERT INTO `saaes`.`t907tipoCurso` (`id`,`descricao`) VALUES (4, 'MEDICINA');

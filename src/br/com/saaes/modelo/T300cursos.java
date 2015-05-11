@@ -53,7 +53,7 @@ public class T300cursos implements Serializable {
     private Short ativo;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "carga_horaria")
-    private BigDecimal cargaHoraria;
+    private Integer cargaHoraria;
     @Column(name = "dt_cadastro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
@@ -62,14 +62,27 @@ public class T300cursos implements Serializable {
     @Size(max = 100)
     @Column(name = "nome")
     private String nome;
-    @Column(name = "num_alunos")
-    private Integer numAlunos;
-    @Column(name = "num_disciplinas")
-    private Integer numDisciplinas;
+    @Column(name = "num_alunos_matriculados")
+    private Integer numAlunosMatriculados;
+    @Column(name = "num_atual_matriculados_periodo")
+    private Integer numAtualMatriculadosPeriodo;
+    @Column(name = "num_total_disciplinas")
+    private Integer numTotalDisciplinas;
     @Column(name = "num_egressos")
     private Integer numEgressos;
     @Column(name = "num_vagas")
     private Integer numVagas;
+    @Column(name = "num_vagas_anuais")
+    private Integer numVagasAnuais;
+    @Column(name = "carga_horaria_minima")
+    private Integer cargaHorariaMinima;
+    @Column(name = "carga_horaria_estagio")
+    private Integer cargaHorariaEstagio;
+    @Column(name = "carga_horaria_tcc")
+    private Integer cargaHorariaTcc;
+    @Column(name = "carga_horaria_libras")
+    private Integer cargaHorariaLibras;
+
     @Size(max = 8)
     @Column(name = "turno")
     private String turno;
@@ -114,11 +127,11 @@ public class T300cursos implements Serializable {
         this.ativo = ativo;
     }
 
-    public BigDecimal getCargaHoraria() {
+    public Integer getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public void setCargaHoraria(BigDecimal cargaHoraria) {
+    public void setCargaHoraria(Integer cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
 
@@ -146,20 +159,20 @@ public class T300cursos implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getNumAlunos() {
-        return numAlunos;
+    public Integer getNumAlunosMatriculados() {
+        return numAlunosMatriculados;
     }
 
-    public void setNumAlunos(Integer numAlunos) {
-        this.numAlunos = numAlunos;
+    public void setNumAlunosMatriculados(Integer numAlunosMatriculados) {
+        this.numAlunosMatriculados = numAlunosMatriculados;
     }
 
-    public Integer getNumDisciplinas() {
-        return numDisciplinas;
+    public Integer getNumTotalDisciplinas() {
+        return numTotalDisciplinas;
     }
 
-    public void setNumDisciplinas(Integer numDisciplinas) {
-        this.numDisciplinas = numDisciplinas;
+    public void setNumTotalDisciplinas(Integer numTotalDisciplinas) {
+        this.numTotalDisciplinas = numTotalDisciplinas;
     }
 
     public Integer getNumEgressos() {
@@ -246,6 +259,54 @@ public class T300cursos implements Serializable {
     @Override
     public String toString() {
         return "br.com.saaes.modelo.T300cursos[ id=" + id + " ]";
+    }
+
+    public Integer getNumAtualMatriculadosPeriodo() {
+        return numAtualMatriculadosPeriodo;
+    }
+
+    public void setNumAtualMatriculadosPeriodo(Integer numAtualMatriculadosPeriodo) {
+        this.numAtualMatriculadosPeriodo = numAtualMatriculadosPeriodo;
+    }
+
+    public Integer getNumVagasAnuais() {
+        return numVagasAnuais;
+    }
+
+    public void setNumVagasAnuais(Integer numVagasAnuais) {
+        this.numVagasAnuais = numVagasAnuais;
+    }
+
+    public Integer getCargaHorariaMinima() {
+        return cargaHorariaMinima;
+    }
+
+    public void setCargaHorariaMinima(Integer cargaHorariaMinima) {
+        this.cargaHorariaMinima = cargaHorariaMinima;
+    }
+
+    public Integer getCargaHorariaEstagio() {
+        return cargaHorariaEstagio;
+    }
+
+    public void setCargaHorariaEstagio(Integer cargaHorariaEstagio) {
+        this.cargaHorariaEstagio = cargaHorariaEstagio;
+    }
+
+    public Integer getCargaHorariaTcc() {
+        return cargaHorariaTcc;
+    }
+
+    public void setCargaHorariaTcc(Integer cargaHorariaTcc) {
+        this.cargaHorariaTcc = cargaHorariaTcc;
+    }
+
+    public Integer getCargaHorariaLibras() {
+        return cargaHorariaLibras;
+    }
+
+    public void setCargaHorariaLibras(Integer cargaHorariaLibras) {
+        this.cargaHorariaLibras = cargaHorariaLibras;
     }
     
 }

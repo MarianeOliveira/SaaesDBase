@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,26 +43,23 @@ public class T500coordenador implements Serializable {
     private Long id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "carga_horaria")
-    private Long cargaHoraria;
+    private Integer cargaHoraria;
     @Column(name = "dt_cadastro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastro;
     @Column(name = "ens_dist")
-    private Integer ensDist;
+    private String ensDist;
     @Column(name = "ens_super")
-    private Integer ensSuper;
+    private String ensSuper;
     @Column(name = "ens_tec")
-    private Integer ensTec;
+    private String ensTec;
     @Column(name = "gest_academica")
     private Integer gestAcademica;
-    @Size(max = 100)
-    @Column(name = "nome")
-    private String nome;
-    @JoinColumn(name = "t902_atuacao_coord", referencedColumnName = "id")
-    @ManyToOne
-    private T902titulacao t902AtuacaoCoord;
-    @JoinColumn(name = "t300_curso_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "t400_docente_id", referencedColumnName = "id")
+    @OneToOne
+    private T400docente t400DocenteId;
+    @JoinColumn(name = "t300_curso_id", referencedColumnName = "id")
+    @OneToOne
     private T300cursos t300CursoId;
     @JoinColumn(name = "t902_titulacao_id", referencedColumnName = "id")
     @ManyToOne
@@ -76,11 +74,11 @@ public class T500coordenador implements Serializable {
     public T500coordenador() {
     }
 
-    public Long getCargaHoraria() {
+    public Integer getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public void setCargaHoraria(Long cargaHoraria) {
+    public void setCargaHoraria(Integer cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
 
@@ -92,27 +90,27 @@ public class T500coordenador implements Serializable {
         this.dtCadastro = dtCadastro;
     }
 
-    public Integer getEnsDist() {
+    public String getEnsDist() {
         return ensDist;
     }
 
-    public void setEnsDist(Integer ensDist) {
+    public void setEnsDist(String ensDist) {
         this.ensDist = ensDist;
     }
 
-    public Integer getEnsSuper() {
+    public String getEnsSuper() {
         return ensSuper;
     }
 
-    public void setEnsSuper(Integer ensSuper) {
+    public void setEnsSuper(String ensSuper) {
         this.ensSuper = ensSuper;
     }
 
-    public Integer getEnsTec() {
+    public String getEnsTec() {
         return ensTec;
     }
 
-    public void setEnsTec(Integer ensTec) {
+    public void setEnsTec(String ensTec) {
         this.ensTec = ensTec;
     }
 
@@ -122,14 +120,6 @@ public class T500coordenador implements Serializable {
 
     public void setGestAcademica(Integer gestAcademica) {
         this.gestAcademica = gestAcademica;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public T902titulacao getT902TitulacaoId() {
@@ -164,13 +154,6 @@ public class T500coordenador implements Serializable {
         this.id = id;
     }
 
-    public T300cursos getT300CursoId() {
-        return t300CursoId;
-    }
-
-    public void setT300CursoId(T300cursos t300CursoId) {
-        this.t300CursoId = t300CursoId;
-    }
 
     @Override
     public int hashCode() {
@@ -199,12 +182,20 @@ public class T500coordenador implements Serializable {
         return "T500coordenador{" + "id=" + id + '}';
     }
 
-    public T902titulacao getT902AtuacaoCoord() {
-        return t902AtuacaoCoord;
+    public T400docente getT400DocenteId() {
+        return t400DocenteId;
     }
 
-    public void setT902AtuacaoCoord(T902titulacao t902AtuacaoCoord) {
-        this.t902AtuacaoCoord = t902AtuacaoCoord;
+    public void setT400DocenteId(T400docente t400DocenteId) {
+        this.t400DocenteId = t400DocenteId;
+    }
+
+    public T300cursos getT300CursoId() {
+        return t300CursoId;
+    }
+
+    public void setT300CursoId(T300cursos t300CursoId) {
+        this.t300CursoId = t300CursoId;
     }
 
 

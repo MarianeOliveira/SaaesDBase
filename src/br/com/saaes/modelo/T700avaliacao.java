@@ -34,7 +34,7 @@ public class T700avaliacao implements Serializable {
     @JoinColumn(name = "t905_modalidade_id", referencedColumnName = "id")
     @ManyToOne
     private T905modalidade t905ModalidadeId;
-    @Column(name = "dt_cadastro")
+    @Column(name = "dt_avaliacao")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtAvaliacao;
 

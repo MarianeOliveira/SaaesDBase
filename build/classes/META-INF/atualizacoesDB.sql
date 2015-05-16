@@ -66,18 +66,19 @@ CREATE TABLE `t400docente` (
 	`tempo_magist_exp_educacao` INT(11) NULL DEFAULT NULL,
 	`dt_admissao` DATE NULL DEFAULT NULL,
 	`dt_cadastro` DATETIME NULL DEFAULT NULL,
-	`artigos_publicados_area` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`artigos_publicados_area` INT(11) NULL DEFAULT NULL,
 	`formacao_capacit_exper_pedagogica` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`artigos_publicados_outras_areas` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`livros_publicados_area` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`livros_publicados_outras_areas` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`prod_didatico_pedagogica` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`proj_produc_tec_artisitica_cultural` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`propriedade_intelectual_depositada` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`propriedade_intelectual_registrada` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`trabalhos_publicados_anais_completo` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`trabalhos_publicados_anais_resumo` ENUM('SIM','NAO') NULL DEFAULT NULL,
-	`traduc_cap_art_publicados` ENUM('SIM','NAO') NULL DEFAULT NULL,
+	`artigos_publicados_outras_areas` INT(11) NULL DEFAULT NULL,
+	`livros_publicados_area` INT(11) NULL DEFAULT NULL,
+	`livros_publicados_outras_areas` INT(11) NULL DEFAULT NULL,
+	`prod_didatico_pedagogica` INT(11) NULL DEFAULT NULL,
+	`proj_produc_tec_artisitica_cultural` INT(11) NULL DEFAULT NULL,
+	`propriedade_intelectual_depositada` INT(11) NULL DEFAULT NULL,
+	`propriedade_intelectual_registrada` INT(11) NULL DEFAULT NULL,
+	`trabalhos_publicados_anais_completo` INT(11) NULL DEFAULT NULL,
+	`trabalhos_publicados_anais_resumo` INT(11) NULL DEFAULT NULL,
+	`traduc_cap_art_publicados` INT(11) NULL DEFAULT NULL,
+	`pertence_nde` ENUM('SIM','NAO') NULL DEFAULT NULL,
 	`t200_ies_id` BIGINT(20) NULL DEFAULT NULL,
 	`t900_usuario_id` BIGINT(20) NULL DEFAULT NULL,
 	`t902_titulacao_maxima_id` INT(11) NULL DEFAULT NULL,
@@ -89,15 +90,15 @@ CREATE TABLE `t400docente` (
 	INDEX `FK_t400_t902` (`t902_titulacao_maxima_id`),
 	INDEX `FK_t400_t903` (`t903_regime_trab_id`),
 	INDEX `FK_t400_t904` (`t904_vinculo_empregaticio_id`),
+	CONSTRAINT `FK_t400_t200` FOREIGN KEY (`t200_ies_id`) REFERENCES `t200ies` (`id`),
 	CONSTRAINT `FK_t400_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`),
-	CONSTRAINT `FK_t400_t904` FOREIGN KEY (`t904_vinculo_empregaticio_id`) REFERENCES `t904vinculoempregaticio` (`id`),
-	CONSTRAINT `FK_t400_t903` FOREIGN KEY (`t903_regime_trab_id`) REFERENCES `t903regimetrabalho` (`id`),
 	CONSTRAINT `FK_t400_t902` FOREIGN KEY (`t902_titulacao_maxima_id`) REFERENCES `t902titulacao` (`id`),
-	CONSTRAINT `FK_t400_t200` FOREIGN KEY (`t200_ies_id`) REFERENCES `t200ies` (`id`)
+	CONSTRAINT `FK_t400_t903` FOREIGN KEY (`t903_regime_trab_id`) REFERENCES `t903regimetrabalho` (`id`),
+	CONSTRAINT `FK_t400_t904` FOREIGN KEY (`t904_vinculo_empregaticio_id`) REFERENCES `t904vinculoempregaticio` (`id`)
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=4;
+AUTO_INCREMENT=6;
 
 
 CREATE TABLE `t500coordenador` (
@@ -286,3 +287,49 @@ INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (1, 'PRESENCIAL')
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (2, 'SEMI PRESENCIAL');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (3, 'A DISTANCIA');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (4, 'MEDICINA');
+
+
+CREATE TABLE `t910indicadores` (
+	`t906_tipo_ato_id` INT(11) NOT NULL,
+	`t905_modalidade_id` INT(11) NOT NULL,
+	`t907_tipo_curso_id` INT(11) NOT NULL,
+	`ind_1` DECIMAL(10,2) NOT NULL,
+	`ind_2` DECIMAL(10,2) NOT NULL,
+	`ind_3` DECIMAL(10,2) NOT NULL,
+	`ind_4` DECIMAL(10,2) NOT NULL,
+	`ind_5` DECIMAL(10,2) NOT NULL,
+	`ind_6` DECIMAL(10,2) NOT NULL,
+	`ind_7` DECIMAL(10,2) NOT NULL,
+	`ind_8` DECIMAL(10,2) NOT NULL,
+	`ind_9` DECIMAL(10,2) NOT NULL,
+	`ind_10` DECIMAL(10,2) NOT NULL,
+	`ind_11` DECIMAL(10,2) NOT NULL,
+	`ind_12` DECIMAL(10,2) NULL DEFAULT NULL,
+	`ind_13` DECIMAL(10,2) NULL DEFAULT NULL,
+	`ind_14` DECIMAL(10,2) NULL DEFAULT NULL,
+	`ind_15` DECIMAL(10,2) NULL DEFAULT NULL,
+	PRIMARY KEY (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;
+
+
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (1,1,1,2.2,2.4,2.5,2.7,2.8,2.9,2.10,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (1,1,3,2.2,2.4,2.5,2.7,2.8,2.9,2.10,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (1,1,2,2.2,2.4,2.5,2.7,2.8,2.9,2.11,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (1,3,1,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.10,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (1,3,3,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.10,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (1,3,2,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.11,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (2,1,1,2.2,2.4,2.5,2.7,2.8,2.9,2.10,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (2,1,3,2.2,2.4,2.5,2.7,2.8,2.9,2.10,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (2,1,2,2.2,2.4,2.5,2.7,2.8,2.9,2.11,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (2,3,1,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.10,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (2,3,3,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.10,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (2,3,2,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.11,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (3,1,1,2.2,2.4,2.5,2.7,2.8,2.9,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (3,1,3,2.2,2.4,2.5,2.7,2.8,2.9,2.10,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (3,1,2,2.2,2.4,2.5,2.7,2.8,2.9,2.11,2.12,2.15,3.6,3.7,3.8,NULL,NULL,NULL);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (3,3,1,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.10,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (3,3,3,2.2,2.3,2.4,2.6,2.7,2.8,2.9,2.10,2.12,2.13,2.15,2.17,2.18,3.6,3.7);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (3,3,2,2.2,2.3,2.4,2.6,2.7,2.8,2.19,2.12,2.13,2.15,2.17,2.18,3.6,3.7,3.8);
+INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`, `ind_1`,`ind_2`, `ind_3`, `ind_4`, `ind_5`, `ind_6`, `ind_7`, `ind_8`, `ind_9`, `ind_10`, `ind_11`, `ind_12`, `ind_13`, `ind_14`, `ind_15` ) VALUES (4,4,4,2.2,2.4,2.5,2.7,2.8,2.9,2.10,2.11,2.12,2.15,2.19,2.20,3.6,3.7,3.8);

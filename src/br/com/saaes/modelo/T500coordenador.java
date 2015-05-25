@@ -1,12 +1,10 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -58,6 +55,9 @@ public class T500coordenador implements Serializable {
     @JoinColumn(name = "t400_docente_id", referencedColumnName = "id")
     @OneToOne
     private T400docente t400DocenteId;
+    @JoinColumn(name = "t901_conceito_id", referencedColumnName = "id")
+    @OneToOne
+    private T901conceitos t901Atuacao;
     @JoinColumn(name = "t300_curso_id", referencedColumnName = "id")
     @OneToOne
     private T300cursos t300CursoId;
@@ -196,6 +196,14 @@ public class T500coordenador implements Serializable {
 
     public void setT300CursoId(T300cursos t300CursoId) {
         this.t300CursoId = t300CursoId;
+    }
+
+    public T901conceitos getT901Atuacao() {
+        return t901Atuacao;
+    }
+
+    public void setT901Atuacao(T901conceitos t901Atuacao) {
+        this.t901Atuacao = t901Atuacao;
     }
 
 

@@ -7,10 +7,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author F4679646
- */
 public class Autenticacao {
 
     public T900Usuario validaT900Usuario(String nomeUsuario, String senha, EntityManager em) throws NoSuchAlgorithmException {

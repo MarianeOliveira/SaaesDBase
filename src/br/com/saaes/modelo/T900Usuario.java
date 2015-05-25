@@ -2,8 +2,10 @@ package br.com.saaes.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,12 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,6 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = T900Usuario.BUSCA_USUARIO, query = "SELECT t FROM T900Usuario t WHERE t.usuario = ?1")})
 
 public class T900Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "t900UsuarioId")
+    private Collection<T700avaliacao> t700avaliacaoCollection;
+    @OneToMany(mappedBy = "t900UsuarioId")
+    private Collection<T200ies> t200iesCollection;
+    @OneToMany(mappedBy = "t900UsuarioId")
+    private Collection<T300cursos> t300cursosCollection;
 
     private static final long serialVersionUID = 1L;
     public static final String BUSCA_TODOS = "T900Usuario.findAll";
@@ -209,6 +219,33 @@ public class T900Usuario implements Serializable {
 
     public void setNomeReduzido(String nomeReduzido) {
         this.nomeReduzido = nomeReduzido;
+    }
+
+    @XmlTransient
+    public Collection<T700avaliacao> getT700avaliacaoCollection() {
+        return t700avaliacaoCollection;
+    }
+
+    public void setT700avaliacaoCollection(Collection<T700avaliacao> t700avaliacaoCollection) {
+        this.t700avaliacaoCollection = t700avaliacaoCollection;
+    }
+
+    @XmlTransient
+    public Collection<T200ies> getT200iesCollection() {
+        return t200iesCollection;
+    }
+
+    public void setT200iesCollection(Collection<T200ies> t200iesCollection) {
+        this.t200iesCollection = t200iesCollection;
+    }
+
+    @XmlTransient
+    public Collection<T300cursos> getT300cursosCollection() {
+        return t300cursosCollection;
+    }
+
+    public void setT300cursosCollection(Collection<T300cursos> t300cursosCollection) {
+        this.t300cursosCollection = t300cursosCollection;
     }
 
 }

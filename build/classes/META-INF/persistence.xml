@@ -17,6 +17,7 @@
     <class>br.com.saaes.modelo.T907tipocurso</class>
     <class>br.com.saaes.modelo.T700avaliacao</class>
     <class>br.com.saaes.modelo.T400t300docentes</class>
+    <class>br.com.saaes.modelo.T910indicadores</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <!--<property name="hibernate.hbm2ddl.auto" value="validate"/>-->

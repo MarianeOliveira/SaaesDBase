@@ -1,6 +1,7 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -20,6 +21,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = T200ies.FIND_ALL, query = "SELECT t FROM T200ies t ")
 })
 public class T200ies implements Serializable {
+
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T200ies.findAll";
     @Id
@@ -130,4 +133,5 @@ public class T200ies implements Serializable {
     public String toString() {
         return "br.com.saaes.modelo.T200ies[ id=" + id + " ]";
     }
+
 }

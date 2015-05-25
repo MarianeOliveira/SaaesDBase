@@ -9,9 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class T700avaliacaoPK_ {
 
 	public static volatile SingularAttribute<T700avaliacaoPK, Long> id;
-	public static volatile SingularAttribute<T700avaliacaoPK, T300cursos> t300cursoId;
-	public static volatile SingularAttribute<T700avaliacaoPK, T900Usuario> t900UsuarioId;
-	public static volatile SingularAttribute<T700avaliacaoPK, T400docente> t400docenteId;
+	public static volatile SingularAttribute<T700avaliacaoPK, T300cursos> t300CursoId;
 
 }
 

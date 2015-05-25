@@ -1,15 +1,18 @@
 package br.com.saaes.modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -20,6 +23,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = T907tipocurso.FIND_ALL, query = "SELECT t FROM T907tipocurso t")})
 public class T907tipocurso implements Serializable {
+    @OneToMany(mappedBy = "t907TipoCursoId")
+    private Collection<T300cursos> t300cursosCollection;
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T907tipocurso.findAll";
     @Id
@@ -77,6 +82,15 @@ public class T907tipocurso implements Serializable {
     @Override
     public String toString() {
         return "br.com.saaes.modelo.T907tipocurso[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<T300cursos> getT300cursosCollection() {
+        return t300cursosCollection;
+    }
+
+    public void setT300cursosCollection(Collection<T300cursos> t300cursosCollection) {
+        this.t300cursosCollection = t300cursosCollection;
     }
     
 }

@@ -17,6 +17,7 @@
     <class>br.com.saaes.modelo.T907tipocurso</class>
     <class>br.com.saaes.modelo.T700avaliacao</class>
     <class>br.com.saaes.modelo.T400t300docentes</class>
+    <class>br.com.saaes.modelo.T910indicadores</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <!--<property name="hibernate.hbm2ddl.auto" value="validate"/>-->
@@ -24,9 +25,9 @@
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.use_sql_comments" value="true"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saaes?zeroDateTimeBehavior=convertToNull"/>
-      <!--<property name="javax.persistence.jdbc.password" value="tccms2015"/>-->
+      <property name="javax.persistence.jdbc.password" value="tccms2015"/>
       <!--<property name="javax.persistence.jdbc.password" value="admin"/>-->
-      <property name="javax.persistence.jdbc.password" value=""/>
+      <!--<property name="javax.persistence.jdbc.password" value=""/>-->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

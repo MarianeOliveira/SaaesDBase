@@ -1,6 +1,7 @@
 package br.com.saaes.modelo;
 
 import javax.annotation.Generated;
+import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
@@ -9,6 +10,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class T907tipocurso_ {
 
 	public static volatile SingularAttribute<T907tipocurso, Integer> id;
+	public static volatile CollectionAttribute<T907tipocurso, T300cursos> t300cursosCollection;
 	public static volatile SingularAttribute<T907tipocurso, String> descricao;
 
 }

@@ -7,7 +7,6 @@
     <class>br.com.saaes.modelo.T400docente</class>
     <class>br.com.saaes.modelo.T500coordenador</class>
     <class>br.com.saaes.modelo.T600bibliografia</class>
-    <class>br.com.saaes.modelo.T700avaliacao</class>
     <class>br.com.saaes.modelo.T900Usuario</class>
     <class>br.com.saaes.modelo.T901conceitos</class>
     <class>br.com.saaes.modelo.T902titulacao</class>
@@ -16,6 +15,9 @@
     <class>br.com.saaes.modelo.T905modalidade</class>
     <class>br.com.saaes.modelo.T906tipoato</class>
     <class>br.com.saaes.modelo.T907tipocurso</class>
+    <class>br.com.saaes.modelo.T700avaliacao</class>
+    <class>br.com.saaes.modelo.T400t300docentes</class>
+    <class>br.com.saaes.modelo.T910indicadores</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <!--<property name="hibernate.hbm2ddl.auto" value="validate"/>-->

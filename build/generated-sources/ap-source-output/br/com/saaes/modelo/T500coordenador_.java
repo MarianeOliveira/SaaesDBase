@@ -17,6 +17,7 @@ public abstract class T500coordenador_ {
 	public static volatile SingularAttribute<T500coordenador, String> ensSuper;
 	public static volatile SingularAttribute<T500coordenador, T900Usuario> t900UsuarioId;
 	public static volatile SingularAttribute<T500coordenador, T300cursos> t300CursoId;
+	public static volatile SingularAttribute<T500coordenador, T901conceitos> t901Atuacao;
 	public static volatile SingularAttribute<T500coordenador, String> ensTec;
 	public static volatile SingularAttribute<T500coordenador, T903regimetrabalho> t903RegimeTrabId;
 	public static volatile SingularAttribute<T500coordenador, T400docente> t400DocenteId;

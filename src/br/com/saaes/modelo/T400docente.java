@@ -2,8 +2,10 @@ package br.com.saaes.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -87,27 +91,34 @@ public class T400docente implements Serializable {
     @Column(name = "formacao_capacit_exper_pedagogica")
     private String formacaoCapacitExperPedagogica;
     @Column(name = "artigos_publicados_area")
-    private String artigosPublicadosArea;
+    private Integer artigosPublicadosArea;
     @Column(name = "artigos_publicados_outras_areas")
-    private String artigosPublicadosoOutrasAreas;
+    private Integer artigosPublicadosoOutrasAreas;
     @Column(name = "livros_publicados_area")
-    private String livrosPublicadosArea;
+    private Integer livrosPublicadosArea;
     @Column(name = "livros_publicados_outras_areas")
-    private String livrosPublicadosoOutrasAreas;
+    private Integer livrosPublicadosoOutrasAreas;
     @Column(name = "trabalhos_publicados_anais_completo")
-    private String trabalhosPublicadosAnaisCompleto;
+    private Integer trabalhosPublicadosAnaisCompleto;
     @Column(name = "trabalhos_publicados_anais_resumo")
-    private String trabalhosPublicadosoAnaisResumo;
+    private Integer trabalhosPublicadosoAnaisResumo;
     @Column(name = "traduc_cap_art_publicados")
-    private String traducCapArtPublicados;
+    private Integer traducCapArtPublicados;
     @Column(name = "propriedade_intelectual_depositada")
-    private String propriedadeIntelectualDepositada;
+    private Integer propriedadeIntelectualDepositada;
     @Column(name = "propriedade_intelectual_registrada")
-    private String propriedadeIntelectualRegistrada;
+    private Integer propriedadeIntelectualRegistrada;
     @Column(name = "proj_produc_tec_artisitica_cultural")
-    private String projProducTecArtisticaCultural;
+    private Integer projProducTecArtisticaCultural;
     @Column(name = "prod_didatico_pedagogica")
-    private String prodDidaticoPedagogica;
+    private Integer prodDidaticoPedagogica;
+    @Column(name = "pertence_nde")
+    private String pertenceNde;
+    
+    @JoinColumn(name = "t400_docente_id", referencedColumnName = "ID")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<T400t300docentes> t400t300docentesList;
+
     
     @Transient            
     private Long tempoVinculo;
@@ -250,93 +261,7 @@ public class T400docente implements Serializable {
         this.qntMediaDisciplinasDoisAnos = qntMediaDisciplinasDoisAnos;
     }
 
-    public String getArtigosPublicadosArea() {
-        return artigosPublicadosArea;
-    }
-
-    public void setArtigosPublicadosArea(String artigosPublicadosArea) {
-        this.artigosPublicadosArea = artigosPublicadosArea;
-    }
-
-    public String getArtigosPublicadosoOutrasAreas() {
-        return artigosPublicadosoOutrasAreas;
-    }
-
-    public void setArtigosPublicadosoOutrasAreas(String artigosPublicadosoOutrasAreas) {
-        this.artigosPublicadosoOutrasAreas = artigosPublicadosoOutrasAreas;
-    }
-
-    public String getLivrosPublicadosArea() {
-        return livrosPublicadosArea;
-    }
-
-    public void setLivrosPublicadosArea(String livrosPublicadosArea) {
-        this.livrosPublicadosArea = livrosPublicadosArea;
-    }
-
-    public String getLivrosPublicadosoOutrasAreas() {
-        return livrosPublicadosoOutrasAreas;
-    }
-
-    public void setLivrosPublicadosoOutrasAreas(String livrosPublicadosoOutrasAreas) {
-        this.livrosPublicadosoOutrasAreas = livrosPublicadosoOutrasAreas;
-    }
-
-    public String getTrabalhosPublicadosAnaisCompleto() {
-        return trabalhosPublicadosAnaisCompleto;
-    }
-
-    public void setTrabalhosPublicadosAnaisCompleto(String trabalhosPublicadosAnaisCompleto) {
-        this.trabalhosPublicadosAnaisCompleto = trabalhosPublicadosAnaisCompleto;
-    }
-
-    public String getTrabalhosPublicadosoAnaisResumo() {
-        return trabalhosPublicadosoAnaisResumo;
-    }
-
-    public void setTrabalhosPublicadosoAnaisResumo(String trabalhosPublicadosoAnaisResumo) {
-        this.trabalhosPublicadosoAnaisResumo = trabalhosPublicadosoAnaisResumo;
-    }
-
-    public String getTraducCapArtPublicados() {
-        return traducCapArtPublicados;
-    }
-
-    public void setTraducCapArtPublicados(String traducCapArtPublicados) {
-        this.traducCapArtPublicados = traducCapArtPublicados;
-    }
-
-    public String getPropriedadeIntelectualDepositada() {
-        return propriedadeIntelectualDepositada;
-    }
-
-    public void setPropriedadeIntelectualDepositada(String propriedadeIntelectualDepositada) {
-        this.propriedadeIntelectualDepositada = propriedadeIntelectualDepositada;
-    }
-
-    public String getPropriedadeIntelectualRegistrada() {
-        return propriedadeIntelectualRegistrada;
-    }
-
-    public void setPropriedadeIntelectualRegistrada(String propriedadeIntelectualRegistrada) {
-        this.propriedadeIntelectualRegistrada = propriedadeIntelectualRegistrada;
-    }
-
-    public String getProjProducTecArtisticaCultural() {
-        return projProducTecArtisticaCultural;
-    }
-
-    public void setProjProducTecArtisticaCultural(String projProducTecArtisticaCultural) {
-        this.projProducTecArtisticaCultural = projProducTecArtisticaCultural;
-    }
-
-    public String getProdDidaticoPedagogica() {
-        return prodDidaticoPedagogica;
-    }
-
-    public void setProdDidaticoPedagogica(String prodDidaticoPedagogica) {
-        this.prodDidaticoPedagogica = prodDidaticoPedagogica;
-    }
+   
     @Override
     public int hashCode() {
         int hash = 7;
@@ -372,6 +297,14 @@ public class T400docente implements Serializable {
         this.cargaHorariaAtivComplementar = cargaHorariaAtivComplementar;
     }
 
+    public T200ies getT200IesId() {
+        return t200IesId;
+    }
+
+    public void setT200IesId(T200ies t200IesId) {
+        this.t200IesId = t200IesId;
+    }
+
     public String getFormacaoCapacitExperPedagogica() {
         return formacaoCapacitExperPedagogica;
     }
@@ -380,11 +313,107 @@ public class T400docente implements Serializable {
         this.formacaoCapacitExperPedagogica = formacaoCapacitExperPedagogica;
     }
 
-    public T200ies getT200IesId() {
-        return t200IesId;
+    public Integer getArtigosPublicadosArea() {
+        return artigosPublicadosArea;
     }
 
-    public void setT200IesId(T200ies t200IesId) {
-        this.t200IesId = t200IesId;
+    public void setArtigosPublicadosArea(Integer artigosPublicadosArea) {
+        this.artigosPublicadosArea = artigosPublicadosArea;
+    }
+
+    public Integer getArtigosPublicadosoOutrasAreas() {
+        return artigosPublicadosoOutrasAreas;
+    }
+
+    public void setArtigosPublicadosoOutrasAreas(Integer artigosPublicadosoOutrasAreas) {
+        this.artigosPublicadosoOutrasAreas = artigosPublicadosoOutrasAreas;
+    }
+
+    public Integer getLivrosPublicadosArea() {
+        return livrosPublicadosArea;
+    }
+
+    public void setLivrosPublicadosArea(Integer livrosPublicadosArea) {
+        this.livrosPublicadosArea = livrosPublicadosArea;
+    }
+
+    public Integer getLivrosPublicadosoOutrasAreas() {
+        return livrosPublicadosoOutrasAreas;
+    }
+
+    public void setLivrosPublicadosoOutrasAreas(Integer livrosPublicadosoOutrasAreas) {
+        this.livrosPublicadosoOutrasAreas = livrosPublicadosoOutrasAreas;
+    }
+
+    public Integer getTrabalhosPublicadosAnaisCompleto() {
+        return trabalhosPublicadosAnaisCompleto;
+    }
+
+    public void setTrabalhosPublicadosAnaisCompleto(Integer trabalhosPublicadosAnaisCompleto) {
+        this.trabalhosPublicadosAnaisCompleto = trabalhosPublicadosAnaisCompleto;
+    }
+
+    public Integer getTrabalhosPublicadosoAnaisResumo() {
+        return trabalhosPublicadosoAnaisResumo;
+    }
+
+    public void setTrabalhosPublicadosoAnaisResumo(Integer trabalhosPublicadosoAnaisResumo) {
+        this.trabalhosPublicadosoAnaisResumo = trabalhosPublicadosoAnaisResumo;
+    }
+
+    public Integer getTraducCapArtPublicados() {
+        return traducCapArtPublicados;
+    }
+
+    public void setTraducCapArtPublicados(Integer traducCapArtPublicados) {
+        this.traducCapArtPublicados = traducCapArtPublicados;
+    }
+
+    public Integer getPropriedadeIntelectualDepositada() {
+        return propriedadeIntelectualDepositada;
+    }
+
+    public void setPropriedadeIntelectualDepositada(Integer propriedadeIntelectualDepositada) {
+        this.propriedadeIntelectualDepositada = propriedadeIntelectualDepositada;
+    }
+
+    public Integer getPropriedadeIntelectualRegistrada() {
+        return propriedadeIntelectualRegistrada;
+    }
+
+    public void setPropriedadeIntelectualRegistrada(Integer propriedadeIntelectualRegistrada) {
+        this.propriedadeIntelectualRegistrada = propriedadeIntelectualRegistrada;
+    }
+
+    public Integer getProjProducTecArtisticaCultural() {
+        return projProducTecArtisticaCultural;
+    }
+
+    public void setProjProducTecArtisticaCultural(Integer projProducTecArtisticaCultural) {
+        this.projProducTecArtisticaCultural = projProducTecArtisticaCultural;
+    }
+
+    public Integer getProdDidaticoPedagogica() {
+        return prodDidaticoPedagogica;
+    }
+
+    public void setProdDidaticoPedagogica(Integer prodDidaticoPedagogica) {
+        this.prodDidaticoPedagogica = prodDidaticoPedagogica;
+    }
+
+    public String getPertenceNde() {
+        return pertenceNde;
+    }
+
+    public void setPertenceNde(String pertenceNde) {
+        this.pertenceNde = pertenceNde;
+    }
+
+    public List<T400t300docentes> getT400t300docentesList() {
+        return t400t300docentesList;
+    }
+
+    public void setT400t300docentesList(List<T400t300docentes> t400t300docentesList) {
+        this.t400t300docentesList = t400t300docentesList;
     }
 }

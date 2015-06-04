@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = T300cursos.FIND_ALL, query = "SELECT t FROM T300cursos t"),
     @NamedQuery(name = T300cursos.FIND_USUARIO, query = "SELECT t FROM T300cursos t WHERE t.t900UsuarioId = ?1 "),
+    @NamedQuery(name = T300cursos.FIND_ID, query = "SELECT t FROM T300cursos t WHERE t.id = ?1 "),
     @NamedQuery(name = T300cursos.FIND_IES, query = "SELECT t FROM T300cursos t WHERE t.t200IesId = ?1 ")
 
 })
@@ -44,6 +45,7 @@ public class T300cursos implements Serializable {
     public static final String FIND_ALL = "T300cursos.findAll";
     public static final String FIND_USUARIO = "T300cursos.findUsuario";
     public static final String FIND_IES = "T300cursos.findIes";
+    public static final String FIND_ID = "T300cursos.findID";
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,6 +107,10 @@ public class T300cursos implements Serializable {
     @JoinColumn(name = "t300_curso_id", referencedColumnName = "ID")
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "t300CursoId")
     private T500coordenador t500coordenador;
+    
+    @JoinColumn(name = "t300_curso_id", referencedColumnName = "ID")
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "t300CursoId")
+    private T600bibliografia t600bibliografica;
     
     @JoinColumn(name = "t300_curso_id", referencedColumnName = "ID")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -328,6 +334,14 @@ public class T300cursos implements Serializable {
 
     public void setT500coordenador(T500coordenador t500coordenador) {
         this.t500coordenador = t500coordenador;
+    }
+
+    public T600bibliografia getT600bibliografica() {
+        return t600bibliografica;
+    }
+
+    public void setT600bibliografica(T600bibliografia t600bibliografica) {
+        this.t600bibliografica = t600bibliografica;
     }
 
     

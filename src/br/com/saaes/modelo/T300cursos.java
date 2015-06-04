@@ -107,6 +107,10 @@ public class T300cursos implements Serializable {
     private T500coordenador t500coordenador;
     
     @JoinColumn(name = "t300_curso_id", referencedColumnName = "ID")
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "t300CursoId")
+    private T600bibliografia t600bibliografica;
+    
+    @JoinColumn(name = "t300_curso_id", referencedColumnName = "ID")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<T400t300docentes> t400t300docentesList;
 
@@ -328,6 +332,14 @@ public class T300cursos implements Serializable {
 
     public void setT500coordenador(T500coordenador t500coordenador) {
         this.t500coordenador = t500coordenador;
+    }
+
+    public T600bibliografia getT600bibliografica() {
+        return t600bibliografica;
+    }
+
+    public void setT600bibliografica(T600bibliografia t600bibliografica) {
+        this.t600bibliografica = t600bibliografica;
     }
 
     

@@ -17,6 +17,7 @@ public abstract class T300cursos_ {
 	public static volatile SingularAttribute<T300cursos, T907tipocurso> t907TipoCursoId;
 	public static volatile SingularAttribute<T300cursos, Date> dtCadastro;
 	public static volatile SingularAttribute<T300cursos, Integer> cargaHorariaTcc;
+	public static volatile SingularAttribute<T300cursos, T600bibliografia> t600bibliografica;
 	public static volatile SingularAttribute<T300cursos, T900Usuario> t900UsuarioId;
 	public static volatile SingularAttribute<T300cursos, String> turno;
 	public static volatile SingularAttribute<T300cursos, Integer> numAtualMatriculadosPeriodo;

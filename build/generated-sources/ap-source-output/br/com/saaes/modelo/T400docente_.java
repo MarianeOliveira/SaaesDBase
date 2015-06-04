@@ -16,6 +16,7 @@ public abstract class T400docente_ {
 	public static volatile SingularAttribute<T400docente, T900Usuario> t900UsuarioId;
 	public static volatile SingularAttribute<T400docente, String> pertenceNde;
 	public static volatile SingularAttribute<T400docente, Integer> prodDidaticoPedagogica;
+	public static volatile SingularAttribute<T400docente, Boolean> supervisaoAssMedica;
 	public static volatile SingularAttribute<T400docente, Long> id;
 	public static volatile SingularAttribute<T400docente, Integer> cargaHorariaOutrosCursos;
 	public static volatile SingularAttribute<T400docente, Integer> tempoForaMagist;
@@ -26,6 +27,7 @@ public abstract class T400docente_ {
 	public static volatile SingularAttribute<T400docente, Integer> projProducTecArtisticaCultural;
 	public static volatile SingularAttribute<T400docente, Integer> trabalhosPublicadosoAnaisResumo;
 	public static volatile SingularAttribute<T400docente, T903regimetrabalho> t903RegimeTrabId;
+	public static volatile SingularAttribute<T400docente, Boolean> servicoClinico;
 	public static volatile SingularAttribute<T400docente, Date> dtAdmissao;
 	public static volatile SingularAttribute<T400docente, T200ies> t200IesId;
 	public static volatile SingularAttribute<T400docente, T902titulacao> t902TitulacaoMaximaId;

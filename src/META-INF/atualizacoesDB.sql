@@ -10,8 +10,7 @@ CREATE TABLE `t200ies` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=6;
-
+AUTO_INCREMENT=7;
 
 CREATE TABLE `t300cursos` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -35,7 +34,7 @@ CREATE TABLE `t300cursos` (
 	`t900_usuario_id` BIGINT(20) NULL DEFAULT NULL,
 	`turno` ENUM('MANHA','TARDE','NOITE','INTEGRAL') NULL DEFAULT NULL,
 	`dt_cadastro` DATETIME NULL DEFAULT NULL,
-	`ativo` SMALLINT(6) NULL DEFAULT '1',
+	`ativo` TINYINT(1) NULL DEFAULT '1',
 	`t300_curso_id` BIGINT(20) NULL DEFAULT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `FK_t300_t200` (`t200_ies_id`),
@@ -43,8 +42,6 @@ CREATE TABLE `t300cursos` (
 	INDEX `FK_t300_t905` (`t905_modalidade_id`),
 	INDEX `FK_t300_t906` (`t906_tipo_ato_id`),
 	INDEX `FK_t300_t907` (`t907_tipo_curso_id`),
-	INDEX `FK_arj5dl24sb18rb08wdiuxo2ix` (`t300_curso_id`),
-	CONSTRAINT `FK_arj5dl24sb18rb08wdiuxo2ix` FOREIGN KEY (`t300_curso_id`) REFERENCES `t500coordenador` (`id`),
 	CONSTRAINT `FK_t300_t200` FOREIGN KEY (`t200_ies_id`) REFERENCES `t200ies` (`id`),
 	CONSTRAINT `FK_t300_t900` FOREIGN KEY (`t900_usuario_id`) REFERENCES `t900usuario` (`id`),
 	CONSTRAINT `FK_t300_t905` FOREIGN KEY (`t905_modalidade_id`) REFERENCES `t905modalidade` (`id`),
@@ -53,9 +50,7 @@ CREATE TABLE `t300cursos` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=6;
-
-
+AUTO_INCREMENT=11;
 
 CREATE TABLE `t400docente` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -103,7 +98,7 @@ CREATE TABLE `t400docente` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=10;
+AUTO_INCREMENT=14;
 
 CREATE TABLE `t400t300docentes` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -118,8 +113,7 @@ CREATE TABLE `t400t300docentes` (
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=6;
-
+AUTO_INCREMENT=14;
 
 CREATE TABLE `t500coordenador` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -151,8 +145,7 @@ CREATE TABLE `t500coordenador` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=5;
-
+AUTO_INCREMENT=8;
 
 CREATE TABLE `t600bibliografia` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -173,32 +166,39 @@ CREATE TABLE `t600bibliografia` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=4;
-
-
+AUTO_INCREMENT=7;
 
 CREATE TABLE `t700avaliacao` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
 	`t300_curso_id` BIGINT(20) NOT NULL,
 	`t905_modalidade_id` INT(11) NULL DEFAULT NULL,
 	`t906_tipo_ato_id` INT(11) NULL DEFAULT NULL,
-	`conceito_ind_1` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_2` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_3` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_4` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_5` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_6` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_7` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_8` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_9` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_10` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_11` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_12` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_13` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_14` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
-	`conceito_ind_15` ENUM('NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT NULL,
+	`conceito_ind_2_2` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_3` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_4` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_5` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_6` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_7` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_8` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_9` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_10` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_11` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_12` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_13` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_15` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_17` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_18` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_19` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_2_20` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_3_6` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_3_7` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
+	`conceito_ind_3_8` ENUM('NAO SE APLICA','NAO EXISTENTE','INSUFICIENTE','SUFICIENTE','MUITO BOM/MUITO BEM','EXCELENTE') NULL DEFAULT 'NAO SE APLICA',
 	`t900_usuario_id` BIGINT(20) NOT NULL,
 	`dt_avaliacao` DATETIME NULL DEFAULT NULL,
+	`nota_ind2` DOUBLE NULL DEFAULT NULL,
+	`nota_ind3` DOUBLE NULL DEFAULT NULL,
+	`conceito_final` DOUBLE NULL DEFAULT NULL,
+	`nota_ind1` DOUBLE NULL DEFAULT NULL,
 	PRIMARY KEY (`id`, `t300_curso_id`),
 	INDEX `FK_t700_t300` (`t300_curso_id`),
 	INDEX `FK_t700_t905` (`t905_modalidade_id`),
@@ -212,7 +212,6 @@ CREATE TABLE `t700avaliacao` (
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=4;
-
 
 
 CREATE TABLE `t900usuario` (
@@ -233,6 +232,7 @@ CREATE TABLE `t900usuario` (
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=3;
+
 
 
 CREATE TABLE `t901conceitos` (
@@ -322,62 +322,12 @@ INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (3, 'OU
 INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (1, 'AUTORIZAÇÃO');
 INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (2, 'RECONHECIMENTO');
 INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (3, 'RENOVAÇÃO');
+INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (4, 'MEDICINA');
 
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (1, 'PRESENCIAL');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (2, 'SEMI PRESENCIAL');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (3, 'A DISTANCIA');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (4, 'MEDICINA');
-
--- CREATE TABLE `t910indicadores` (
--- 	`t906_tipo_ato_id` INT(11) NOT NULL,
--- 	`t905_modalidade_id` INT(11) NOT NULL,
--- 	`t907_tipo_curso_id` INT(11) NOT NULL,
--- 	`ind_2_2` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_3` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_4` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_5` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_6` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_7` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_8` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_9` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_10` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_11` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_12` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_13` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_15` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_17` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_18` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_19` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_2_20` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_3_6` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_3_7` VARCHAR(4) NULL DEFAULT NULL,
--- 	`ind_3_8` VARCHAR(4) NULL DEFAULT NULL,
--- 	PRIMARY KEY (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`)
--- )
--- COLLATE='utf8_general_ci'
--- ENGINE=InnoDB;
-
-
-
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (1,1,1,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,2.10,NULL,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (1,1,3,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,2.10,NULL,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (1,1,2,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,NULL,2.11,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (1,3,1,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,2.10,NULL,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (1,3,3,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,2.10,NULL,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (1,3,2,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,NULL,2.11,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (2,1,1,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,2.10,NULL,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (2,1,3,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,2.10,NULL,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (2,1,2,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,NULL,2.11,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (2,3,1,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,2.10,NULL,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (2,3,3,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,2.10,NULL,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (2,3,2,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,NULL,2.11,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (3,1,1,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,NULL,NULL,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (3,1,3,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,2.10,NULL,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (3,1,2,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,NULL,2.11,2.12,NULL,2.15,NULL,NULL,NULL,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (3,3,1,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,2.10,NULL,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (3,3,3,2.2,2.3,2.4,NULL,2.6,2.7,2.8,2.9,2.10,NULL,2.12,2.13,2.15,2.17,2.18,NULL,NULL,3.6,3.7,NULL);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (3,3,2,2.2,2.3,2.4,NULL,2.6,2.7,2.8,NULL,NULL,NULL,2.12,2.13,2.15,2.17,2.18,2.19,NULL,3.6,3.7,3.8);
--- INSERT INTO `saaes`.`t910indicadores` (`t906_tipo_ato_id`, `t905_modalidade_id`, `t907_tipo_curso_id`,`ind_2_2`,`ind_2_3`,`ind_2_4`,`ind_2_5`,`ind_2_6`,`ind_2_7`,`ind_2_8`,`ind_2_9`,`ind_2_10`,`ind_2_11`,`ind_2_12`,`ind_2_13`,`ind_2_15`,`ind_2_17`,`ind_2_18`,`ind_2_19`,`ind_2_20`,`ind_3_6`,`ind_3_7`,`ind_3_8`) VALUES (4,4,4,2.2,NULL,2.4,2.5,NULL,2.7,2.8,2.9,2.10,2.11,2.12,NULL,2.15,NULL,NULL,2.19,2.20,3.6,3.7,3.8);
 
 CREATE TABLE `t910indicadores` (
 	`t906_tipo_ato_id` INT(11) NOT NULL,

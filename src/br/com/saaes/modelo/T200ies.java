@@ -31,12 +31,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "t200ies")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = T200ies.FIND_ALL, query = "SELECT t FROM T200ies t ")
+    @NamedQuery(name = T200ies.FIND_ALL, query = "SELECT t FROM T200ies t "),
+    @NamedQuery(name = T200ies.FIND_USUARIO, query = "SELECT t FROM T200ies t WHERE t.t900UsuarioId = ?1")
 })
 public class T200ies implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public static final String FIND_ALL = "T200ies.findAll";
+    public static final String FIND_USUARIO = "T200ies.findUsuario";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

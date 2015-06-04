@@ -98,10 +98,14 @@ public class T700avaliacao implements Serializable {
     @Size(max = 19)
     @Column(name = "conceito_ind_3_8")
     private String conceitoInd3_8 = "NAO SE APLICA";
+    @Column(name="nota_ind1")
+    private Double notaInd1;
     @Column(name="nota_ind2")
     private Double notaInd2;
     @Column(name="nota_ind3")
     private Double notaInd3;
+    @Column(name = "conceito_final")
+    private Double conceitoFinal;
     @Column(name = "dt_avaliacao")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtAvaliacao;
@@ -366,6 +370,22 @@ public class T700avaliacao implements Serializable {
 
     public void setNotaInd3(Double notaInd3) {
         this.notaInd3 = notaInd3;
+    }
+
+    public Double getNotaInd1() {
+        return notaInd1;
+    }
+
+    public void setNotaInd1(Double notaInd1) {
+        this.notaInd1 = notaInd1;
+    }
+
+    public Double getConceitoFinal() {
+        return conceitoFinal;
+    }
+
+    public void setConceitoFinal(Double conceitoFinal) {
+        this.conceitoFinal = conceitoFinal;
     }
     
 }

@@ -70,6 +70,10 @@ public class T400docente implements Serializable {
     @Column(name = "dt_admissao")
     @Temporal(TemporalType.DATE)
     private Date dtAdmissao;
+    @Column(name = "supervisao_ass_medica")
+    private boolean supervisaoAssMedica;
+    @Column(name = "servico_clinico")
+    private boolean servicoClinico;
     @Column(name = "tempo_magist_exp_educacao")
     private Integer tempoMagistExpEducacao;
     @Column(name = "tempo_fora_magist")
@@ -415,5 +419,21 @@ public class T400docente implements Serializable {
 
     public void setT400t300docentesList(List<T400t300docentes> t400t300docentesList) {
         this.t400t300docentesList = t400t300docentesList;
+    }
+
+    public boolean getSupervisaoAssMedica() {
+        return supervisaoAssMedica;
+    }
+
+    public void setSupervisaoAssMedica(boolean supervisaoAssMedica) {
+        this.supervisaoAssMedica = supervisaoAssMedica;
+    }
+
+    public boolean getServicoClinico() {
+        return servicoClinico;
+    }
+
+    public void setServicoClinico(boolean servicoClinico) {
+        this.servicoClinico = servicoClinico;
     }
 }

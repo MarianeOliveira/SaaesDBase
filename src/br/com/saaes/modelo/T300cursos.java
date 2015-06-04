@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = T300cursos.FIND_ALL, query = "SELECT t FROM T300cursos t"),
     @NamedQuery(name = T300cursos.FIND_USUARIO, query = "SELECT t FROM T300cursos t WHERE t.t900UsuarioId = ?1 "),
+    @NamedQuery(name = T300cursos.FIND_ID, query = "SELECT t FROM T300cursos t WHERE t.id = ?1 "),
     @NamedQuery(name = T300cursos.FIND_IES, query = "SELECT t FROM T300cursos t WHERE t.t200IesId = ?1 ")
 
 })
@@ -44,6 +45,7 @@ public class T300cursos implements Serializable {
     public static final String FIND_ALL = "T300cursos.findAll";
     public static final String FIND_USUARIO = "T300cursos.findUsuario";
     public static final String FIND_IES = "T300cursos.findIes";
+    public static final String FIND_ID = "T300cursos.findID";
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

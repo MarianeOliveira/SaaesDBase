@@ -42,14 +42,14 @@ public class T600bibliografia implements Serializable {
     private Date dtCadastro;
     @Column(name = "media_basica")
     private Integer mediaBasica;
-    @Column(name = "media_completa")
-    private Integer mediaCompleta;
+    @Column(name = "media_complementar")
+    private Integer mediaComplementar;
     @Column(name = "periodico")
     private Integer periodico;
     @Column(name = "qnt_basica")
     private Integer qntBasica;
-    @Column(name = "qnt_completa")
-    private Integer qntCompleta;
+    @Column(name = "qnt_complementar")
+    private Integer qntComplementar;
     @Column(name = "qnt_disciplina")
     private Integer qntDisciplina;
     @JoinColumn(name = "t900_usuario_id", referencedColumnName = "id")
@@ -95,12 +95,12 @@ public class T600bibliografia implements Serializable {
         this.mediaBasica = mediaBasica;
     }
 
-    public Integer getMediaCompleta() {
-        return mediaCompleta;
+    public Integer getMediaComplementar() {
+        return mediaComplementar;
     }
 
-    public void setMediaCompleta(Integer mediaCompleta) {
-        this.mediaCompleta = mediaCompleta;
+    public void setMediaComplementar(Integer mediaComplementar) {
+        this.mediaComplementar = mediaComplementar;
     }
 
     public Integer getPeriodico() {
@@ -119,12 +119,12 @@ public class T600bibliografia implements Serializable {
         this.qntBasica = qntBasica;
     }
 
-    public Integer getQntCompleta() {
-        return qntCompleta;
+    public Integer getQntComplementar() {
+        return qntComplementar;
     }
 
-    public void setQntCompleta(Integer qntCompleta) {
-        this.qntCompleta = qntCompleta;
+    public void setQntComplementar(Integer qntComplementar) {
+        this.qntComplementar = qntComplementar;
     }
 
     public Integer getQntDisciplina() {

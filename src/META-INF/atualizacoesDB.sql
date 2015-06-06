@@ -331,12 +331,10 @@ INSERT INTO `saaes`.`t904vinculoempregaticio` (`id`, `descricao`) VALUES (3, 'OU
 INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (1, 'AUTORIZAÇÃO');
 INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (2, 'RECONHECIMENTO');
 INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (3, 'RENOVAÇÃO');
-INSERT INTO `saaes`.`t906tipoAto` (`id`,`descricao`) VALUES (4, 'MEDICINA');
 
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (1, 'PRESENCIAL');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (2, 'SEMI PRESENCIAL');
 INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (3, 'A DISTANCIA');
-INSERT INTO `saaes`.`t905modalidade` (`id`,`descricao`) VALUES (4, 'MEDICINA');
 
 CREATE TABLE `t910indicadores` (
 	`t906_tipo_ato_id` INT(11) NOT NULL,

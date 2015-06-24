@@ -9,11 +9,12 @@
         <group name="Novo Saaes">
             <file>file:/E:/_desenv/Saaes_Banco/SaaesDBase_/src/br/com/saaes/modelo/T400docentePK.java</file>
         </group>
-        <group name="Saaes">
-            <file>file:/E:/_desenv/SaaesDBase/src/META-INF/persistence.xml</file>
-        </group>
         <group name="Meus">
             <file>file:/C:/_desenv/Pessoal/Saaes/SaaesDBase/src/br/com/saaes/dao/DAO.java</file>
+        </group>
+        <group name="Saaes">
+            <file>file:/E:/_desenv/SaaesDBase/src/META-INF/persistence.xml</file>
+            <file>file:/E:/_desenv/SaaesDBase/src/META-INF/atualizacoesDB.sql</file>
         </group>
     </open-files>
 </project-private>
